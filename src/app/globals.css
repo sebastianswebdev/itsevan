@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — dark navy base, electric blue accent */
+  --color-ink-950: #04060d;
+  --color-ink-900: #070b16;
+  --color-ink-800: #0a1120;
+  --color-ink-700: #101a30;
+  --color-ink-600: #182a44;
+
+  --color-accent-300: #8ab4ff;
+  --color-accent-400: #4d8dff;
+  --color-accent-500: #2f7dff;
+  --color-accent-600: #1f66f0;
+
+  --color-cyanx: #3ad6ff;
+  --color-violetx: #8b7bff;
+  --color-emeraldx: #34d399;
+  --color-amberx: #fbbf24;
+}
+
+/* Font tokens reference next/font variables set on <body>, so they must
+   be inlined into the utilities rather than emitted on :root. */
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+  --font-script: var(--font-caveat), "Segoe Script", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  /* clip (not hidden) so position: sticky keeps working */
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-ink-950);
+  color: #cbd5e1;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(47, 125, 255, 0.35);
+  color: #ffffff;
+}
+
+/* --- Reusable surface treatments --- */
+
+.glass {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glass-strong {
+  background: linear-gradient(
+    160deg,
+    rgba(16, 26, 48, 0.85),
+    rgba(7, 11, 22, 0.9)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.card-hover {
+  transition:
+    transform 0.35s cubic-bezier(0.21, 0.65, 0.28, 0.99),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(47, 125, 255, 0.35);
+  box-shadow:
+    0 20px 45px -18px rgba(4, 6, 13, 0.9),
+    0 0 40px -12px rgba(47, 125, 255, 0.25);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 32px rgba(47, 125, 255, 0.45);
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Thin gradient border ring used on feature panels */
+.ring-fade {
+  position: relative;
+}
+.ring-fade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    165deg,
+    rgba(47, 125, 255, 0.45),
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.04) 60%,
+    rgba(58, 214, 255, 0.25)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
