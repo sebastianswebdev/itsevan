@@ -71,7 +71,8 @@ export function Header() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="rounded-full px-3 py-2 text-sm text-ink-600 transition-colors hover:bg-ink-900/[0.05] hover:text-ink-900 xl:px-3.5"
+                  /* tightened at lg so eight labels clear 1024px; full size from xl */
+                  className="rounded-full px-2 py-2 text-[13px] whitespace-nowrap text-ink-600 transition-colors hover:bg-ink-900/[0.05] hover:text-ink-900 xl:px-3.5 xl:text-sm"
                 >
                   {link.label}
                 </Link>
