@@ -4,7 +4,7 @@ export const site = {
   description:
     "Sebastian Works builds high-performance websites, growth systems, and AI automation for businesses.",
   url: "https://sebastianworks.dev",
-  person: "Evan Martinez",
+  person: "Evan Sebastian Martinez",
   /** Actual working role. Sebastian Works is the freelance brand, not an agency. */
   role: "Freelance WordPress Developer & Marketing Strategist",
   email: "evanmartinez@gmail.com",

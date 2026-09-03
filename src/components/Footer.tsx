@@ -20,7 +20,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
-              The freelance brand of Evan Martinez — WordPress development,
+              The freelance brand of {site.person} — WordPress development,
               measurable marketing, and AI automation for businesses that want
               to scale.
             </p>
