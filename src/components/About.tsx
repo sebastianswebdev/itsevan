@@ -87,7 +87,7 @@ export function About() {
                 <div className="grid-pattern absolute inset-0 opacity-70 [mask-image:radial-gradient(100%_90%_at_50%_0%,black,transparent_80%)]" />
                 <Image
                   src={aboutPortrait}
-                  alt="Evan Martinez, freelance WordPress developer and marketing strategist, standing with arms crossed"
+                  alt="Evan Sebastian Martinez, freelance WordPress developer and marketing strategist, standing with arms crossed"
                   sizes="(min-width: 1024px) 440px, 88vw"
                   quality={82}
                   placeholder="blur"

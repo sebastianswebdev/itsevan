@@ -28,7 +28,7 @@ export const portraitStages: PortraitStage[] = [
     role: "Strategy & Growth",
     words: ["Strategy", "Growth", "Results"],
     src: executivePortrait,
-    alt: "Evan Martinez in a navy suit — freelance WordPress developer and marketing strategist",
+    alt: "Evan Sebastian Martinez in a navy suit — freelance WordPress developer and marketing strategist",
   },
   {
     id: "development",
@@ -36,7 +36,7 @@ export const portraitStages: PortraitStage[] = [
     role: "Web Development",
     words: ["Build", "Design", "Optimize"],
     src: devPortrait,
-    alt: "Evan Martinez working on a laptop — building fast, modern websites",
+    alt: "Evan Sebastian Martinez working on a laptop — building fast, modern websites",
   },
   {
     id: "marketing",
@@ -44,7 +44,7 @@ export const portraitStages: PortraitStage[] = [
     role: "Performance Marketing",
     words: ["Ads", "Analytics", "Conversions"],
     src: marketingPortrait,
-    alt: "Evan Martinez reviewing campaign performance — Google Ads and analytics",
+    alt: "Evan Sebastian Martinez reviewing campaign performance — Google Ads and analytics",
   },
   {
     id: "automation",
@@ -52,6 +52,6 @@ export const portraitStages: PortraitStage[] = [
     role: "AI Automation",
     words: ["Automate", "Scale", "Innovate"],
     src: automationPortrait,
-    alt: "Evan Martinez presenting an AI workflow on a tablet — automation systems",
+    alt: "Evan Sebastian Martinez presenting an AI workflow on a tablet — automation systems",
   },
 ];

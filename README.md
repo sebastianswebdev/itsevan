@@ -1,6 +1,6 @@
 # Sebastian Works — Portfolio
 
-Premium portfolio website for **Sebastian Works** (Evan Martinez) — Web
+Premium portfolio website for **Sebastian Works** (Evan Sebastian Martinez) — Web
 Development · Performance Marketing · AI Automation.
 
 Built with Next.js (App Router), TypeScript, Tailwind CSS v4 and Motion
