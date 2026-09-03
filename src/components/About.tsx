@@ -30,16 +30,16 @@ export function About() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
           {/* Copy */}
           <Reveal>
-            <p className="mb-3 text-xs font-semibold tracking-[0.28em] text-accent-400 uppercase">
+            <p className="mb-3 text-xs font-semibold tracking-[0.28em] text-accent-600 uppercase">
               About me
             </p>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-              I&apos;m Evan, Founder of{" "}
-              <span className="bg-gradient-to-r from-accent-400 to-cyanx bg-clip-text text-transparent">
-                Sebastian Works
+            <h2 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
+              I&apos;m Evan, a{" "}
+              <span className="bg-gradient-to-r from-accent-600 to-cyanx bg-clip-text text-transparent">
+                Freelance WordPress Developer &amp; Marketing Strategist
               </span>
             </h2>
-            <p className="mt-5 max-w-xl leading-relaxed text-slate-400">
+            <p className="mt-5 max-w-xl leading-relaxed text-ink-500">
               I combine web development, digital advertising, analytics and AI
               automation to help businesses attract customers, improve their
               digital experiences, automate repetitive processes and build
@@ -50,14 +50,14 @@ export function About() {
             <ul className="mt-9 space-y-6">
               {principles.map((principle) => (
                 <li key={principle.title} className="flex gap-4">
-                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent-500/30 bg-accent-500/10 text-accent-400">
+                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent-500/25 bg-accent-500/10 text-accent-600">
                     <Icon name="check" className="h-4 w-4" strokeWidth={2.2} />
                   </span>
                   <div>
-                    <h3 className="text-base font-semibold text-white">
+                    <h3 className="text-base font-semibold text-ink-900">
                       {principle.title}
                     </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-400">
+                    <p className="mt-1 text-sm leading-relaxed text-ink-500">
                       {principle.description}
                     </p>
                   </div>
@@ -66,27 +66,28 @@ export function About() {
             </ul>
 
             <div className="mt-10">
-              <p className="font-script text-4xl text-accent-300/90">
+              <p className="font-script text-4xl text-accent-600">
                 Sebastian Works
               </p>
-              <p className="mt-1 text-xs tracking-[0.2em] text-slate-500 uppercase">
-                {site.founder} · Founder
+              <p className="mt-1 text-xs tracking-[0.2em] text-ink-500 uppercase">
+                {site.person}
               </p>
+              <p className="mt-1.5 text-sm text-ink-500">{site.role}</p>
             </div>
           </Reveal>
 
           {/* Portrait + floating core-focus panel */}
           <Reveal delay={0.12}>
             <div className="relative mx-auto w-full max-w-md lg:mr-0">
-              <div className="ring-fade relative overflow-hidden rounded-[2rem] bg-ink-900/70">
+              <div className="ring-fade relative overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-40px_rgba(15,23,42,0.35)]">
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-[radial-gradient(85%_65%_at_50%_20%,rgba(47,125,255,0.22),transparent_65%)]"
+                  className="absolute inset-0 bg-[radial-gradient(85%_65%_at_50%_20%,rgba(31,102,240,0.12),transparent_65%)]"
                 />
                 <div className="grid-pattern absolute inset-0 opacity-70 [mask-image:radial-gradient(100%_90%_at_50%_0%,black,transparent_80%)]" />
                 <Image
                   src={aboutPortrait}
-                  alt="Evan Martinez, founder of Sebastian Works, standing with arms crossed"
+                  alt="Evan Martinez, freelance WordPress developer and marketing strategist, standing with arms crossed"
                   sizes="(min-width: 1024px) 440px, 88vw"
                   quality={82}
                   placeholder="blur"
@@ -94,7 +95,7 @@ export function About() {
                 />
                 <div
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-950/85 to-transparent"
+                  className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/40 to-transparent"
                 />
               </div>
 

@@ -43,7 +43,7 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "border-b border-white/[0.06] bg-ink-950/80 backdrop-blur-xl"
+          ? "border-b border-line bg-white/85 shadow-[0_1px_20px_-12px_rgba(15,23,42,0.35)] backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
@@ -58,9 +58,9 @@ export function Header() {
             src={logo}
             alt=""
             priority
-            className="h-9 w-auto brightness-160 saturate-125 drop-shadow-[0_0_12px_rgba(47,125,255,0.45)]"
+            className="h-9 w-auto"
           />
-          <span className="hidden text-sm font-semibold tracking-[0.22em] text-white uppercase sm:block">
+          <span className="hidden text-sm font-semibold tracking-[0.22em] text-ink-900 uppercase sm:block">
             Sebastian Works
           </span>
         </Link>
@@ -71,7 +71,7 @@ export function Header() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="rounded-full px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white xl:px-3.5"
+                  className="rounded-full px-3 py-2 text-sm text-ink-600 transition-colors hover:bg-ink-900/[0.05] hover:text-ink-900 xl:px-3.5"
                 >
                   {link.label}
                 </Link>
@@ -83,7 +83,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/#contact"
-            className="group hidden items-center gap-2 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-medium whitespace-nowrap text-white shadow-[0_0_24px_-8px_rgba(47,125,255,0.8)] transition-all hover:bg-accent-400 sm:inline-flex"
+            className="group hidden items-center gap-2 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-medium whitespace-nowrap text-white shadow-[0_8px_20px_-8px_rgba(31,102,240,0.6)] transition-all hover:bg-accent-600 sm:inline-flex"
           >
             Let&apos;s Talk
             <Icon
@@ -94,7 +94,7 @@ export function Header() {
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-200 transition-colors hover:bg-white/[0.1] lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-white text-ink-700 transition-colors hover:bg-surface-100 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label="Open menu"
@@ -112,7 +112,7 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation"
-            className="fixed inset-0 z-50 flex h-dvh flex-col bg-ink-950/95 backdrop-blur-2xl lg:hidden"
+            className="fixed inset-0 z-50 flex h-dvh flex-col bg-canvas/95 backdrop-blur-2xl lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -120,15 +120,15 @@ export function Header() {
           >
             <div className="flex h-18 items-center justify-between px-5">
               <span className="flex items-center gap-3">
-                <Image src={logo} alt="" className="h-8 w-auto brightness-160 saturate-125" />
-                <span className="text-sm font-semibold tracking-[0.22em] text-white uppercase">
+                <Image src={logo} alt="" className="h-8 w-auto" />
+                <span className="text-sm font-semibold tracking-[0.22em] text-ink-900 uppercase">
                   Sebastian Works
                 </span>
               </span>
               <button
                 ref={closeButtonRef}
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-slate-200"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-white text-ink-700"
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}
               >
@@ -148,7 +148,7 @@ export function Header() {
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="block rounded-2xl px-4 py-3.5 text-2xl font-semibold tracking-tight text-slate-100 transition-colors hover:bg-white/[0.06] hover:text-white"
+                      className="block rounded-2xl px-4 py-3.5 text-2xl font-semibold tracking-tight text-ink-800 transition-colors hover:bg-ink-900/[0.05] hover:text-ink-900"
                     >
                       {link.label}
                     </Link>
@@ -161,12 +161,12 @@ export function Header() {
               <Link
                 href="/#contact"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-4 text-base font-medium text-white shadow-[0_0_32px_-8px_rgba(47,125,255,0.8)]"
+                className="flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-4 text-base font-medium text-white shadow-[0_10px_28px_-10px_rgba(31,102,240,0.65)]"
               >
                 Let&apos;s Talk
                 <Icon name="arrowRight" className="h-4 w-4" />
               </Link>
-              <p className="mt-4 text-center text-xs text-slate-500">
+              <p className="mt-4 text-center text-xs text-ink-500">
                 {site.tagline}
               </p>
             </div>

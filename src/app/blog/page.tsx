@@ -28,19 +28,19 @@ export default function BlogPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute -top-24 left-1/3 h-80 w-80 rounded-full bg-accent-600/15 blur-[130px]"
+            className="absolute -top-24 left-1/3 h-80 w-80 rounded-full bg-accent-400/20 blur-[130px]"
           />
           <div className="relative mx-auto max-w-2xl px-5 py-32 text-center sm:px-8">
-            <p className="text-xs font-semibold tracking-[0.28em] text-accent-400 uppercase">
+            <p className="text-xs font-semibold tracking-[0.28em] text-accent-600 uppercase">
               Blog
             </p>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 text-4xl font-bold tracking-tight text-ink-900 sm:text-5xl">
               Insights are{" "}
-              <span className="bg-gradient-to-r from-accent-400 to-cyanx bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-accent-600 to-cyanx bg-clip-text text-transparent">
                 on the way
               </span>
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-slate-400 sm:text-lg">
+            <p className="mt-5 text-base leading-relaxed text-ink-500 sm:text-lg">
               Practical writing on web development, performance marketing and
               AI automation is coming soon. In the meantime, let&apos;s talk
               about your project.

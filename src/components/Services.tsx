@@ -7,10 +7,10 @@ import { services } from "@/data/services";
 import { cn } from "@/lib/utils";
 
 const accentStyles = {
-  blue: "bg-accent-500/12 text-accent-400",
-  emerald: "bg-emeraldx/12 text-emeraldx",
-  violet: "bg-violetx/12 text-violetx",
-  amber: "bg-amberx/12 text-amberx",
+  blue: "bg-accent-500/10 text-accent-600",
+  emerald: "bg-emeraldx/10 text-emeraldx",
+  violet: "bg-violetx/10 text-violetx",
+  amber: "bg-amberx/10 text-amberx",
 } as const;
 
 export function Services() {
@@ -23,7 +23,7 @@ export function Services() {
             title={
               <>
                 Everything your business needs{" "}
-                <span className="text-accent-400">to grow online</span>
+                <span className="text-accent-600">to grow online</span>
               </>
             }
             description="Four disciplines, one partner — so your website, traffic, tracking and automation actually work together."
@@ -43,15 +43,15 @@ export function Services() {
                   >
                     <Icon name={service.icon} className="h-6 w-6" />
                   </span>
-                  <span className="font-mono text-xs text-slate-600">
+                  <span className="font-mono text-xs text-ink-400">
                     {service.number}
                   </span>
                 </div>
 
-                <h3 className="mt-6 text-lg font-semibold text-white">
+                <h3 className="mt-6 text-lg font-semibold text-ink-900">
                   {service.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                <p className="mt-2.5 text-sm leading-relaxed text-ink-500">
                   {service.description}
                 </p>
 
@@ -59,7 +59,7 @@ export function Services() {
                   {service.capabilities.map((capability) => (
                     <li
                       key={capability}
-                      className="rounded-md border border-white/[0.07] bg-white/[0.03] px-2 py-1 text-[11px] text-slate-400"
+                      className="rounded-md border border-line bg-surface-100 px-2 py-1 text-[11px] text-ink-600"
                     >
                       {capability}
                     </li>
@@ -68,7 +68,7 @@ export function Services() {
 
                 <Link
                   href="/#contact"
-                  className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-accent-400 transition-colors group-hover:text-accent-300"
+                  className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-accent-600 transition-colors group-hover:text-accent-700"
                   aria-label={`Learn more about ${service.title}`}
                 >
                   Learn More

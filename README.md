@@ -32,7 +32,7 @@ public/images/    # brand + portrait assets
 ## Editing content
 
 - **Contact/booking links, social URLs** → `src/data/site.ts`
-  (LinkedIn / GitHub / Upwork links are `#` placeholders — fill them in).
+  (the Upwork link is still a `#` placeholder — fill it in).
 - **Hero portrait stages** → `src/data/portraits.ts`.
 - **Testimonials** → `src/data/testimonials.ts` — the entries are clearly
   marked placeholders; replace with real client quotes and remove the

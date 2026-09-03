@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04060d",
+  themeColor: "#f6f8fc",
   width: "device-width",
   initialScale: 1,
 };
@@ -72,10 +72,10 @@ const jsonLd = {
   name: site.name,
   url: site.url,
   description: site.description,
-  founder: {
+  provider: {
     "@type": "Person",
-    name: site.founder,
-    jobTitle: "Founder",
+    name: site.person,
+    jobTitle: site.role,
   },
   knowsAbout: [
     "Web Development",
@@ -92,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} font-sans`}
       >

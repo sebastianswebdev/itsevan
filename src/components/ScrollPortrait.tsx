@@ -107,11 +107,11 @@ function StageChip({ progress, index, simple }: StageMotionProps) {
       className="glass-strong absolute bottom-4 left-4 z-20 rounded-2xl px-4 py-3 sm:bottom-5 sm:left-5"
       style={simple ? { opacity } : { opacity, y }}
     >
-      <p className="font-mono text-[10px] tracking-[0.25em] text-accent-400 uppercase">
+      <p className="font-mono text-[10px] tracking-[0.25em] text-accent-600 uppercase">
         {stage.label} / 0{STAGE_COUNT}
       </p>
-      <p className="mt-1 text-sm font-semibold text-white">{stage.role}</p>
-      <p className="mt-0.5 text-xs text-slate-400">{stage.words.join("  ·  ")}</p>
+      <p className="mt-1 text-sm font-semibold text-ink-900">{stage.role}</p>
+      <p className="mt-0.5 text-xs text-ink-500">{stage.words.join("  ·  ")}</p>
     </motion.div>
   );
 }
@@ -149,8 +149,8 @@ function Sparkline() {
     <svg viewBox="0 0 120 40" className="h-10 w-full" aria-hidden="true">
       <defs>
         <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#2f7dff" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#2f7dff" stopOpacity="0" />
+          <stop offset="0%" stopColor="#1f66f0" stopOpacity="0.28" />
+          <stop offset="100%" stopColor="#1f66f0" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path
@@ -160,7 +160,7 @@ function Sparkline() {
       <path
         d="M2 34 14 30 26 31 38 25 50 27 62 20 74 22 86 14 98 15 118 4"
         fill="none"
-        stroke="#4d8dff"
+        stroke="#1f66f0"
         strokeWidth="2"
         strokeLinecap="round"
       />
@@ -177,7 +177,7 @@ function MiniBars() {
           key={i}
           className={cn(
             "w-2 rounded-sm",
-            i === heights.length - 1 ? "bg-accent-400" : "bg-accent-500/35",
+            i === heights.length - 1 ? "bg-accent-500" : "bg-accent-500/25",
           )}
           style={{ height: `${h * 3.5}%`, minHeight: h }}
         />
@@ -194,12 +194,12 @@ function ChartCard({ progress }: { progress: MotionValue<number> }) {
       className="-top-6 -right-4 hidden w-52 p-4 xl:-right-10 xl:block xl:w-56"
     >
       <div className="flex items-center gap-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-500/15 text-accent-400">
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-500/10 text-accent-600">
           <Icon name="trend" className="h-4 w-4" />
         </span>
         <div>
-          <p className="text-xs font-semibold text-white">Growth trajectory</p>
-          <p className="text-[10px] text-slate-500">strategy → results</p>
+          <p className="text-xs font-semibold text-ink-900">Growth trajectory</p>
+          <p className="text-[10px] text-ink-500">strategy → results</p>
         </div>
       </div>
       <div className="mt-3">
@@ -216,28 +216,28 @@ function CodeCard({ progress }: { progress: MotionValue<number> }) {
       stage={1}
       className="-top-10 -left-4 w-60 -rotate-2 p-0 xl:-left-14 xl:w-64"
     >
-      <div className="flex items-center gap-1.5 border-b border-white/[0.07] px-4 py-2.5">
-        <span className="h-2 w-2 rounded-full bg-rose-400/80" />
-        <span className="h-2 w-2 rounded-full bg-amber-300/80" />
-        <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
-        <span className="ml-2 font-mono text-[10px] text-slate-500">Hero.tsx</span>
+      <div className="flex items-center gap-1.5 border-b border-line px-4 py-2.5">
+        <span className="h-2 w-2 rounded-full bg-rose-400" />
+        <span className="h-2 w-2 rounded-full bg-amber-400" />
+        <span className="h-2 w-2 rounded-full bg-emerald-400" />
+        <span className="ml-2 font-mono text-[10px] text-ink-500">Hero.tsx</span>
       </div>
-      <pre className="overflow-hidden px-4 py-3 font-mono text-[10px] leading-relaxed text-slate-400">
+      <pre className="overflow-hidden px-4 py-3 font-mono text-[10px] leading-relaxed text-ink-600">
         <code>
           <span className="text-violetx">export function</span>{" "}
           <span className="text-cyanx">Hero</span>
           {"() {\n  "}
           <span className="text-violetx">return</span>
           {" (\n    "}
-          <span className="text-slate-500">&lt;</span>
+          <span className="text-ink-400">&lt;</span>
           <span className="text-emeraldx">section</span>
-          <span className="text-slate-500">&gt;</span>
+          <span className="text-ink-400">&gt;</span>
           {"\n      "}
-          <span className="text-slate-200">Fast. Modern. Scalable.</span>
+          <span className="text-ink-800">Fast. Modern. Scalable.</span>
           {"\n    "}
-          <span className="text-slate-500">&lt;/</span>
+          <span className="text-ink-400">&lt;/</span>
           <span className="text-emeraldx">section</span>
-          <span className="text-slate-500">&gt;</span>
+          <span className="text-ink-400">&gt;</span>
           {"\n  )\n}"}
         </code>
       </pre>
@@ -256,9 +256,9 @@ function StackCard({ progress }: { progress: MotionValue<number> }) {
         {stackChips.map((tech) => (
           <li
             key={tech}
-            className="flex items-center gap-2 rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-slate-200"
+            className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-xs font-medium text-ink-700"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-500" />
             {tech}
           </li>
         ))}
@@ -276,10 +276,10 @@ function AdsCard({ progress }: { progress: MotionValue<number> }) {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-emeraldx/15 text-emeraldx">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-emeraldx/10 text-emeraldx">
             <Icon name="megaphone" className="h-4 w-4" />
           </span>
-          <p className="text-xs font-semibold text-white">Google Ads</p>
+          <p className="text-xs font-semibold text-ink-900">Google Ads</p>
         </div>
         <span className="flex items-center gap-1 rounded-full bg-emeraldx/10 px-2 py-0.5 text-[10px] font-medium text-emeraldx">
           <span className="h-1 w-1 rounded-full bg-emeraldx" />
@@ -293,12 +293,12 @@ function AdsCard({ progress }: { progress: MotionValue<number> }) {
         {marketingChips.slice(1).map((chip) => (
           <span
             key={chip}
-            className="rounded-md border border-white/[0.08] bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-slate-300"
+            className="rounded-md border border-line bg-surface-100 px-2 py-1 font-mono text-[10px] text-ink-600"
           >
             {chip}
           </span>
         ))}
-        <span className="rounded-md border border-white/[0.08] bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-slate-300">
+        <span className="rounded-md border border-line bg-surface-100 px-2 py-1 font-mono text-[10px] text-ink-600">
           Conversions
         </span>
       </div>
@@ -314,15 +314,15 @@ function AutomationCard({ progress }: { progress: MotionValue<number> }) {
       className="right-0 bottom-6 w-52 p-4 xl:-right-8 xl:w-56"
     >
       <div className="flex items-center gap-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-violetx/15 text-violetx">
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-violetx/10 text-violetx">
           <Icon name="cpu" className="h-4 w-4" />
         </span>
-        <p className="text-xs font-semibold text-white">Automation active</p>
+        <p className="text-xs font-semibold text-ink-900">Automation active</p>
       </div>
       <ul className="mt-3 space-y-2">
         {automationChecklist.map((item) => (
-          <li key={item} className="flex items-center gap-2 text-xs text-slate-300">
-            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-emeraldx/15 text-emeraldx">
+          <li key={item} className="flex items-center gap-2 text-xs text-ink-600">
+            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-emeraldx/10 text-emeraldx">
               <Icon name="check" className="h-2.5 w-2.5" strokeWidth={2.5} />
             </span>
             {item}
@@ -356,16 +356,16 @@ function StageDot({
       type="button"
       onClick={() => onSelect?.(index)}
       style={{ opacity }}
-      className="group flex flex-col items-start gap-1.5 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+      className="group flex flex-col items-start gap-1.5 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500"
       aria-label={`Jump to ${stage.role}`}
     >
-      <span className="relative h-0.5 w-12 overflow-hidden rounded-full bg-white/15">
+      <span className="relative h-0.5 w-12 overflow-hidden rounded-full bg-line-strong">
         <motion.span
-          className="absolute inset-0 origin-left rounded-full bg-accent-400"
+          className="absolute inset-0 origin-left rounded-full bg-accent-500"
           style={{ scaleX: barScale }}
         />
       </span>
-      <span className="text-[10px] font-medium tracking-wider text-slate-400 uppercase transition-colors group-hover:text-slate-200">
+      <span className="text-[10px] font-medium tracking-wider text-ink-500 uppercase transition-colors group-hover:text-ink-800">
         {stage.role}
       </span>
     </motion.button>
@@ -406,16 +406,16 @@ export function ScrollPortrait({ progress }: { progress: MotionValue<number> }) 
     <div className="relative mx-auto w-full max-w-[min(24rem,54svh)] lg:max-w-[min(540px,56svh)]">
       <div className="relative aspect-[4/5] w-full">
         {/* Backing frame */}
-        <div className="ring-fade absolute inset-x-0 top-8 bottom-0 overflow-hidden rounded-[2rem] bg-ink-900/60 sm:top-12">
+        <div className="ring-fade absolute inset-x-0 top-8 bottom-0 overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_70px_-40px_rgba(15,23,42,0.35)] sm:top-12">
           <div className="grid-pattern absolute inset-0 [mask-image:radial-gradient(120%_100%_at_50%_0%,black,transparent_75%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(90%_70%_at_50%_18%,rgba(47,125,255,0.18),transparent_65%)]" />
-          <div className="absolute -inset-x-8 bottom-0 h-28 bg-gradient-to-t from-ink-950 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(90%_70%_at_50%_18%,rgba(31,102,240,0.10),transparent_65%)]" />
+          <div className="absolute -inset-x-8 bottom-0 h-28 bg-gradient-to-t from-white to-transparent" />
         </div>
 
         {/* Glow behind the subject */}
         <div
           aria-hidden="true"
-          className="absolute top-1/4 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-500/25 blur-[110px]"
+          className="absolute top-1/4 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-400/18 blur-[110px]"
         />
 
         {/* Portrait stages — all mounted up-front so every image preloads */}
@@ -431,7 +431,7 @@ export function ScrollPortrait({ progress }: { progress: MotionValue<number> }) 
         {/* Fade the portrait bases (desk edges, torso cuts) into the frame */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 z-10 h-24 rounded-b-[2rem] bg-gradient-to-t from-ink-950/90 via-ink-950/35 to-transparent"
+          className="absolute inset-x-0 bottom-0 z-10 h-24 rounded-b-[2rem] bg-gradient-to-t from-white via-white/40 to-transparent"
         />
 
         {/* Stage meta chip */}

@@ -52,12 +52,12 @@ function AmbientBackground() {
     <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
       <div className="grid-pattern absolute inset-0 opacity-60 [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]" />
       <motion.div
-        className="absolute -top-32 left-[8%] h-96 w-96 rounded-full bg-accent-600/20 blur-[140px]"
+        className="absolute -top-32 left-[8%] h-96 w-96 rounded-full bg-accent-400/25 blur-[140px]"
         animate={reduceMotion ? undefined : { x: [0, 28, 0], y: [0, 18, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-1/3 right-[4%] h-80 w-80 rounded-full bg-violetx/12 blur-[130px]"
+        className="absolute top-1/3 right-[4%] h-80 w-80 rounded-full bg-violetx/10 blur-[130px]"
         animate={reduceMotion ? undefined : { x: [0, -24, 0], y: [0, -16, 0] }}
         transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -75,11 +75,11 @@ function HeroCopy({ compact = false }: { compact?: boolean }) {
     >
       <motion.p
         variants={entranceItem}
-        className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold tracking-[0.18em] text-slate-300 uppercase"
+        className="inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-white px-4 py-2 text-[11px] font-semibold tracking-[0.18em] text-ink-600 uppercase shadow-[0_1px_2px_rgba(15,23,42,0.05)]"
       >
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-60 motion-reduce:animate-none" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-400" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-500 opacity-60 motion-reduce:animate-none" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-500" />
         </span>
         I don&apos;t just build — I grow businesses
       </motion.p>
@@ -88,15 +88,15 @@ function HeroCopy({ compact = false }: { compact?: boolean }) {
         variants={entranceItem}
         className={
           compact
-            ? "mt-5 text-[2.6rem] leading-[1.05] font-bold tracking-tight text-white sm:text-6xl"
-            : "mt-6 text-6xl leading-[1.04] font-bold tracking-tight text-white lg:text-[3.4rem] xl:text-[4rem] 2xl:text-[4.5rem]"
+            ? "mt-5 text-[2.6rem] leading-[1.05] font-bold tracking-tight text-ink-900 sm:text-6xl"
+            : "mt-6 text-6xl leading-[1.04] font-bold tracking-tight text-ink-900 lg:text-[3.4rem] xl:text-[4rem] 2xl:text-[4.5rem]"
         }
       >
         Strategy.
         <br />
         Systems.
         <br />
-        <span className="text-glow-blue bg-gradient-to-r from-accent-400 via-accent-300 to-cyanx bg-clip-text text-transparent">
+        <span className="text-glow-blue bg-gradient-to-r from-accent-600 via-accent-500 to-cyanx bg-clip-text text-transparent">
           Scalable
         </span>{" "}
         Results.
@@ -104,7 +104,7 @@ function HeroCopy({ compact = false }: { compact?: boolean }) {
 
       <motion.p
         variants={entranceItem}
-        className="mt-6 max-w-md text-base leading-relaxed text-slate-400 sm:text-lg"
+        className="mt-6 max-w-md text-base leading-relaxed text-ink-500 sm:text-lg"
       >
         I help businesses build powerful websites, drive high-converting
         traffic, and automate systems that scale.
@@ -167,7 +167,7 @@ function HeroDesktop() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="mt-12"
             >
-              <p className="mb-4 font-mono text-[10px] tracking-[0.3em] text-slate-500 uppercase">
+              <p className="mb-4 font-mono text-[10px] tracking-[0.3em] text-ink-500 uppercase">
                 Scroll to explore
               </p>
               <StageDots progress={scrollYProgress} onSelect={scrollToStage} />

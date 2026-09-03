@@ -1,22 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — dark navy base, electric blue accent */
-  --color-ink-950: #04060d;
-  --color-ink-900: #070b16;
-  --color-ink-800: #0a1120;
-  --color-ink-700: #101a30;
-  --color-ink-600: #182a44;
+  /* Brand palette — light canvas, deep-blue accent.
 
+     Surfaces go light-to-lighter (canvas is the page, surface is a card);
+     `ink-*` is the text ramp on top of them. Every ink step from 500 up
+     clears WCAG AA (4.5:1) against `--color-canvas`; `ink-400` does not,
+     so keep it to decorative marks and hairlines. */
+
+  --color-canvas: #f6f8fc;
+  --color-surface: #ffffff;
+  --color-surface-100: #eef3f9;
+  --color-surface-200: #e4ebf4;
+  --color-surface-300: #d6e0ec;
+
+  --color-ink-900: #0b1220;
+  --color-ink-800: #1c2740;
+  --color-ink-700: #33415a;
+  --color-ink-600: #475569;
+  --color-ink-500: #5b6b80;
+  --color-ink-400: #8592a3;
+
+  --color-line: #e2e8f2;
+  --color-line-strong: #cfdae8;
+
+  /* accent-500 is the lightest step that carries body-size text on canvas
+     (5.0:1) and white text on itself — use 300/400 for decoration only. */
   --color-accent-300: #8ab4ff;
   --color-accent-400: #4d8dff;
-  --color-accent-500: #2f7dff;
-  --color-accent-600: #1f66f0;
+  --color-accent-500: #1f66f0;
+  --color-accent-600: #1550c8;
+  --color-accent-700: #103f9e;
 
-  --color-cyanx: #3ad6ff;
-  --color-violetx: #8b7bff;
-  --color-emeraldx: #34d399;
-  --color-amberx: #fbbf24;
+  --color-cyanx: #0891b2;
+  --color-violetx: #6039e8;
+  --color-emeraldx: #059669;
+  --color-amberx: #b45309;
 }
 
 /* Font tokens reference next/font variables set on <body>, so they must
@@ -41,25 +60,30 @@ html {
 }
 
 body {
-  background-color: var(--color-ink-950);
-  color: #cbd5e1;
+  background-color: var(--color-canvas);
+  color: var(--color-ink-600);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(47, 125, 255, 0.35);
-  color: #ffffff;
+  background: rgba(31, 102, 240, 0.18);
+  color: var(--color-ink-900);
 }
 
-/* --- Reusable surface treatments --- */
+/* --- Reusable surface treatments ---
+   On a light canvas, elevation reads from shadow rather than from a
+   lighter fill, so every panel carries a soft ambient shadow. */
 
 .glass {
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.02)
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.72)
   );
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 10px 30px -16px rgba(15, 23, 42, 0.14);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -67,10 +91,13 @@ body {
 .glass-strong {
   background: linear-gradient(
     160deg,
-    rgba(16, 26, 48, 0.85),
-    rgba(7, 11, 22, 0.9)
+    #ffffff,
+    rgba(248, 250, 253, 0.94)
   );
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 20px 44px -20px rgba(15, 23, 42, 0.22);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -85,20 +112,22 @@ body {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(47, 125, 255, 0.35);
+  border-color: rgba(31, 102, 240, 0.28);
   box-shadow:
-    0 20px 45px -18px rgba(4, 6, 13, 0.9),
-    0 0 40px -12px rgba(47, 125, 255, 0.25);
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    0 26px 50px -22px rgba(15, 23, 42, 0.24);
 }
 
+/* Soft accent halo behind display text — kept low-opacity so it reads as
+   depth on white rather than as blur. */
 .text-glow-blue {
-  text-shadow: 0 0 32px rgba(47, 125, 255, 0.45);
+  text-shadow: 0 10px 34px rgba(31, 102, 240, 0.22);
 }
 
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
@@ -114,10 +143,10 @@ body {
   padding: 1px;
   background: linear-gradient(
     165deg,
-    rgba(47, 125, 255, 0.45),
-    rgba(255, 255, 255, 0.08) 30%,
-    rgba(255, 255, 255, 0.04) 60%,
-    rgba(58, 214, 255, 0.25)
+    rgba(31, 102, 240, 0.35),
+    rgba(15, 23, 42, 0.09) 30%,
+    rgba(15, 23, 42, 0.05) 60%,
+    rgba(8, 145, 178, 0.28)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -125,4 +154,74 @@ body {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+/* --- Infinite testimonial marquee ---
+   The track holds two identical groups side by side and slides left by one
+   full group (+ the gap that follows it), so the loop point is invisible.
+   Keep both groups in sync when editing the markup, or the seam will show. */
+
+.marquee {
+  --marquee-gap: 1.25rem;
+  --marquee-duration: 60s;
+  overflow: hidden;
+  /* room for the card hover-lift and its shadow, which overflow would clip */
+  padding-block: 1.25rem;
+  /* edges dissolve into the canvas instead of ending on a hard cut */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--marquee-gap);
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  gap: var(--marquee-gap);
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  /* one group is exactly half the track minus half a gap */
+  to {
+    transform: translate3d(calc(-50% - var(--marquee-gap) / 2), 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  /* the duplicate group is decoration for the loop; hide it when static */
+  .marquee-group[aria-hidden="true"] {
+    display: none;
+  }
 }

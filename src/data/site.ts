@@ -4,12 +4,13 @@ export const site = {
   description:
     "Sebastian Works builds high-performance websites, growth systems, and AI automation for businesses.",
   url: "https://sebastianworks.dev",
-  founder: "Evan Martinez",
-  // TODO: point these at your real booking link / inbox before launch.
-  email: "hello@sebastianworks.dev",
+  person: "Evan Martinez",
+  /** Actual working role. Sebastian Works is the freelance brand, not an agency. */
+  role: "Freelance WordPress Developer & Marketing Strategist",
+  email: "evanmartinez@gmail.com",
   bookingHref:
-    "mailto:hello@sebastianworks.dev?subject=Strategy%20call%20with%20Sebastian%20Works",
-  contactHref: "mailto:hello@sebastianworks.dev",
+    "mailto:evanmartinez@gmail.com?subject=Strategy%20call%20with%20Sebastian%20Works",
+  contactHref: "mailto:evanmartinez@gmail.com",
 } as const;
 
 export const navLinks = [
@@ -22,10 +23,13 @@ export const navLinks = [
   { label: "Contact", href: "/#contact" },
 ] as const;
 
-// TODO: replace the "#" placeholders with real profile URLs.
+// TODO: replace the Upwork "#" placeholder with a real profile URL.
 export const socialLinks = [
-  { label: "LinkedIn", href: "#", icon: "linkedin" },
-  { label: "GitHub", href: "#", icon: "github" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/evan-sebastian-martinez-a78aa927/",
+    icon: "linkedin",
+  },
   { label: "Upwork", href: "#", icon: "briefcase" },
-  { label: "Email", href: "mailto:hello@sebastianworks.dev", icon: "mail" },
+  { label: "Email", href: "mailto:evanmartinez@gmail.com", icon: "mail" },
 ] as const;

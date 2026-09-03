@@ -28,7 +28,7 @@ export const portraitStages: PortraitStage[] = [
     role: "Strategy & Growth",
     words: ["Strategy", "Growth", "Results"],
     src: executivePortrait,
-    alt: "Evan Martinez in a navy suit — founder and growth strategist at Sebastian Works",
+    alt: "Evan Martinez in a navy suit — freelance WordPress developer and marketing strategist",
   },
   {
     id: "development",

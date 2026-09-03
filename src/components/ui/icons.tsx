@@ -10,7 +10,6 @@ export type IconName =
   | "compass"
   | "cpu"
   | "gauge"
-  | "github"
   | "linkedin"
   | "mail"
   | "megaphone"
@@ -97,11 +96,6 @@ const icons: Record<IconName, (props: IconProps) => React.JSX.Element> = {
       <path d="m12 13 3.5-4.5" />
       <circle cx="12" cy="14" r="1.6" />
     </Base>
-  ),
-  github: (p) => (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}>
-      <path d="M12 1.9a10.2 10.2 0 0 0-3.2 19.9c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5A4 4 0 0 1 6.8 8.8a3.7 3.7 0 0 1 .1-2.7s.9-.3 2.8 1a9.7 9.7 0 0 1 5.1 0c1.9-1.3 2.8-1 2.8-1 .5 1.3.2 2.4.1 2.7a4 4 0 0 1 1.1 2.8c0 4-2.4 4.8-4.7 5 .4.3.7 1 .7 1.9v2.8c0 .3.2.6.7.5A10.2 10.2 0 0 0 12 1.9Z" />
-    </svg>
   ),
   linkedin: (p) => (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}>

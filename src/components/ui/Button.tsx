@@ -23,11 +23,11 @@ export function ButtonLink({
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400",
+        "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500",
         variant === "primary" &&
-          "bg-accent-500 text-white shadow-[0_0_28px_-6px_rgba(47,125,255,0.55)] hover:bg-accent-400 hover:shadow-[0_0_36px_-4px_rgba(47,125,255,0.7)] active:scale-[0.98]",
+          "bg-accent-500 text-white shadow-[0_8px_22px_-8px_rgba(31,102,240,0.6)] hover:bg-accent-600 hover:shadow-[0_12px_28px_-8px_rgba(31,102,240,0.7)] active:scale-[0.98]",
         variant === "secondary" &&
-          "border border-white/15 bg-white/[0.04] text-slate-100 hover:border-white/30 hover:bg-white/[0.08] active:scale-[0.98]",
+          "border border-line-strong bg-white text-ink-800 shadow-[0_1px_2px_rgba(15,23,42,0.05)] hover:border-accent-500/40 hover:bg-surface-100 active:scale-[0.98]",
         className,
       )}
     >

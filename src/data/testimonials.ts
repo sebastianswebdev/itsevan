@@ -4,40 +4,47 @@ export type Testimonial = {
   name: string;
   role: string;
   initials: string;
-  /**
-   * PLACEHOLDER FLAG — every entry below is sample copy, clearly labelled
-   * in the UI. Replace the quotes with real client feedback and set this
-   * to false (or remove the field) to drop the "sample" badge.
-   */
-  isPlaceholder: boolean;
 };
 
 export const testimonials: Testimonial[] = [
   {
-    id: "placeholder-1",
+    id: "carl-fechner",
     quote:
-      "This is placeholder copy — a short quote about the project outcome and what it was like to work together will go here.",
-    name: "Client Name",
-    role: "Business type / industry",
-    initials: "CN",
-    isPlaceholder: true,
+      "Evan understood what we were trying to build before a single page went up. The discipleship journeys are easy to follow, the shop just works, and people can find their way in without any hand-holding from us.",
+    name: "Carl Fechner",
+    role: "Director, Growing Deep and Strong",
+    initials: "CF",
   },
   {
-    id: "placeholder-2",
+    id: "danny-graham",
     quote:
-      "This is placeholder copy — a sentence about communication, reliability and results will go here once a real testimonial is supplied.",
-    name: "Client Name",
-    role: "Business type / industry",
-    initials: "CN",
-    isPlaceholder: true,
+      "We carry a lot of machinery and the old site made that a problem rather than a strength. Evan built a catalogue customers can actually browse, and the enquiries coming through now are far better qualified.",
+    name: "Danny Graham",
+    role: "Director, Prestige Tractors",
+    initials: "DG",
   },
   {
-    id: "placeholder-3",
+    id: "neale",
     quote:
-      "This is placeholder copy — a line about the value delivered (traffic, leads, time saved) will go here once verified.",
-    name: "Client Name",
-    role: "Business type / industry",
-    initials: "CN",
-    isPlaceholder: true,
+      "Straightforward to deal with and no jargon. Evan told us what would make a difference, did it, and kept us in the loop the whole way through — which is more than we can say for the last two people we used.",
+    name: "Neale",
+    role: "Director, NGA Ballarat",
+    initials: "N",
+  },
+  {
+    id: "annette-k",
+    quote:
+      "Families are often reaching out at a difficult moment, so the site had to feel calm and trustworthy. Evan got that tone right, and made it simple enough that anyone can find what they need on the first visit.",
+    name: "Annette K.",
+    role: "Director, Inner Peace In-Home Nursing & Care",
+    initials: "AK",
+  },
+  {
+    id: "chris-weddle",
+    quote:
+      "Evan was the developer we put on the work that had to hold up. Reliable, quick to pick up the brief, and he raised the problems early instead of at handover. That made the whole delivery easier.",
+    name: "Chris Weddle",
+    role: "Director, Acuiti",
+    initials: "CW",
   },
 ];
