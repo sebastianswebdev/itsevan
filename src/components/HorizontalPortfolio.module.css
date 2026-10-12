@@ -17,6 +17,7 @@
 .portfolio button:disabled { cursor: default; opacity: .25; }
 .portfolio :is(button, a, select):focus-visible { outline: 2px solid var(--lime); outline-offset: 5px; }
 .panel:focus { outline: none; }
+.portfolio [data-panel-scroll]:focus-visible { outline: 1px solid var(--lime); outline-offset: -4px; }
 .skipLink { position: absolute; z-index: 100; top: -80px; left: 20px; padding: 12px 22px; background: var(--lime); color: #10130d; border-radius: 30px; }
 .skipLink:focus { top: 20px; }
 .header, .footer { position: absolute; z-index: 10; left: 3.2%; right: 3.2%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
@@ -81,7 +82,7 @@
 .projectPicker label { display: block; font-size: 10px; color: #b2baac; margin-bottom: 10px; }
 .projectPicker select { width: 100%; color: #e7ebe0; background: #20241d; border: 1px solid #ffffff26; border-radius: 8px; padding: 12px 14px; font-size: 11px; text-overflow: ellipsis; cursor: pointer; }
 .projectStage { display: grid; grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr); gap: 38px; }
-.projectImage { position: relative; display: block; border-radius: 8px; overflow: hidden; background: #303a29; aspect-ratio: 1.6; }
+.projectImage { position: relative; display: block; border-radius: 8px; overflow: hidden; background: #303a29; aspect-ratio: 1.6; max-height: calc(100dvh - 385px); min-height: 200px; }
 .projectImage img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
 .projectImage:hover img { transform: scale(1.025); }
 .imageLink { position: absolute; right: 20px; bottom: 20px; background: #111711df; backdrop-filter: blur(12px); padding: 12px 18px; border-radius: 30px; border: 1px solid #ffffff33; font-size: 11px; }
@@ -120,7 +121,7 @@
 .slideControls { display: flex; gap: 10px; align-items: center; }
 .scrollHint { margin-right: 14px; font-size: 10px; color: #b7bdaf; }
 .scrollHint span { margin-left: 8px; }
-.slideCount { font-family: var(--font-geist-mono), monospace; font-size: 10px; margin-right: 5px; }
+.slideCount { font-family: var(--font-geist-mono), monospace; font-size: 10px; margin-right: 5px; white-space: nowrap; }
 .slideCount span { color: #adb5a4; }
 .slideControls button { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid #ffffff2b; transition: background .2s; }
 .slideControls button:hover:not(:disabled) { background: #ffffff19; }
@@ -194,7 +195,7 @@
   .projectPicker label { font-size: 9px; }
   .projectPicker select { font-size: 11px; }
   .projectStage { display: block; }
-  .projectImage { aspect-ratio: 1.6; }
+  .projectImage { aspect-ratio: 1.6; max-height: none; min-height: 0; }
   .imageLink { right: 12px; bottom: 12px; padding: 9px 12px; font-size: 9px; }
   .projectInfo { margin-top: 22px; }
   .projectInfo h3 { font-size: 28px; margin-top: 9px; }

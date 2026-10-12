@@ -68,12 +68,12 @@ export function HorizontalPortfolio() {
   const project = allProjects.find((item) => item.id === projectId)!;
   const projectIndex = allProjects.findIndex((item) => item.id === projectId);
 
-  const goTo = useCallback((index: number, focus = false) => {
+  const goTo = useCallback((index: number, focus = false, instant = false) => {
     const rail = railRef.current;
     const panel = panelRefs.current[index];
     if (!rail || !panel) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    rail.scrollTo({ left: panel.offsetLeft, behavior: reduced ? "instant" : "smooth" });
+    rail.scrollTo({ left: panel.offsetLeft, behavior: reduced || instant ? "instant" : "smooth" });
     if (focus) panel.focus({ preventScroll: true });
   }, []);
 
@@ -92,7 +92,7 @@ export function HorizontalPortfolio() {
       const hash = window.location.hash.slice(1);
       const aliases: Record<string, string> = { about: "intro", "how-i-work": "services", testimonials: "work" };
       const index = slides.findIndex((slide) => slide.id === (aliases[hash] ?? hash));
-      if (index >= 0) goTo(index);
+      if (index >= 0) goTo(index, false, true);
     };
     const onResize = () => rail.scrollTo({ left: activeRef.current * rail.clientWidth, behavior: "instant" });
     const onWheel = (event: WheelEvent) => {
@@ -165,7 +165,7 @@ export function HorizontalPortfolio() {
             </div>
           </div>
           <div className={styles.portrait}><Image src={portrait} alt="Evan Sebastian Martinez" preload sizes="(max-width: 700px) 85vw, 48vw" /></div>
-          <div className={styles.introContent} data-panel-scroll>
+          <div className={styles.introContent} data-panel-scroll tabIndex={0} aria-label="Introduction content">
             <div className={styles.introCopy}>
               <p className={styles.eyebrow}><span className={styles.statusDot} /> Hey, I&apos;m Evan Sebastian Martinez</p>
               <h1 id="intro-title">Web development<span>Performance<br className={styles.desktopBreak} /> marketing<span className={styles.adsNote}>(paid ads)</span></span><span>AI automation<span className={styles.star} aria-hidden="true">✳</span></span></h1>
@@ -178,7 +178,7 @@ export function HorizontalPortfolio() {
           </div>
         </section>
         <section id="services" ref={(element) => { panelRefs.current[1] = element; }} className={`${styles.panel} ${styles.services}`} tabIndex={-1} aria-labelledby="services-title">
-          <div className={styles.panelContent} data-panel-scroll>
+          <div className={styles.panelContent} data-panel-scroll tabIndex={0} aria-label="Services content">
             <div className={styles.sectionHeading}>
               <p className={styles.eyebrow}>01 — What I can do</p>
               <h2 id="services-title">Your idea.<br /><span>My hands on it.</span></h2>
@@ -196,7 +196,7 @@ export function HorizontalPortfolio() {
           </div>
         </section>
         <section id="work" ref={(element) => { panelRefs.current[2] = element; }} className={`${styles.panel} ${styles.work}`} tabIndex={-1} aria-labelledby="work-title">
-          <div className={`${styles.panelContent} ${styles.workContent}`} data-panel-scroll>
+          <div className={`${styles.panelContent} ${styles.workContent}`} data-panel-scroll tabIndex={0} aria-label="Projects content">
             <div className={styles.workHeading}>
               <div><p className={styles.eyebrow}>02 — Selected work</p><h2 id="work-title">Made to <span>be used.</span></h2></div>
               <div className={styles.projectPicker}>
@@ -224,7 +224,7 @@ export function HorizontalPortfolio() {
           </div>
         </section>
         <section id="contact" ref={(element) => { panelRefs.current[3] = element; }} className={`${styles.panel} ${styles.contact}`} tabIndex={-1} aria-labelledby="contact-title">
-          <div className={`${styles.panelContent} ${styles.contactContent}`} data-panel-scroll>
+          <div className={`${styles.panelContent} ${styles.contactContent}`} data-panel-scroll tabIndex={0} aria-label="Contact content">
             <p className={styles.eyebrow}>03 — Let&apos;s make something</p>
             <h2 id="contact-title">Have an idea?<br /><span>Let&apos;s get it</span><br />moving.<span className={styles.contactStar} aria-hidden="true">✳</span></h2>
             <div className={styles.contactBottom}>
