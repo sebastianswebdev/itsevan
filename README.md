@@ -13,6 +13,9 @@ or a horizontal swipe. Home/End jump to the first/last slide. Smaller screens
 allow vertical scrolling inside a slide when needed. Reduced motion settings
 disable animated transitions. Direct links such as `/#work` remain supported.
 
+Geist fonts are stored in `public/fonts/` with their SIL Open Font License, so
+building the portfolio does not require fetching fonts from Google.
+
 ## Development
 
 ```bash

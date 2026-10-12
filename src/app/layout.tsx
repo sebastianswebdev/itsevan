@@ -1,24 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import { site } from "@/data/site";
 
 import "./globals.css";
 
-const geistSans = Geist({
+const geistSans = localFont({
+  src: [
+    { path: "../../public/fonts/geist-regular.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/geist-semibold.ttf", weight: "600", style: "normal" },
+  ],
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["500", "600"],
+  display: "swap",
 });
 
 const title = "Sebastian Works — Web Development, Ads & AI Automation";
@@ -92,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} font-sans`}
+        className={`${geistSans.variable} font-sans`}
       >
         <script
           type="application/ld+json"
