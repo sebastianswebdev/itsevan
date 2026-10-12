@@ -44,7 +44,11 @@ public/images/    # brand + portrait assets
 - **Intro, three skills, and slide navigation** → `src/components/HorizontalPortfolio.tsx`.
 - **Layout and responsive styles** → `src/components/HorizontalPortfolio.module.css`.
 - **Projects** → `src/data/projects.ts`. All projects remain available in the
-  project selector, with freelance and agency contributions labelled separately.
+  project selector: 12 Australian projects and 11 Philippine projects. Country
+  controls filter the selector and project arrows. Freelance work covers design,
+  development, hosting management, SEO, ads, and marketing. Agency/company work
+  is credited as development from supplied Figma or Adobe XD designs. The
+  Philippine projects were built from scratch while working at ITWorks Global.
 
 The homepage intentionally omits strategy/growth positioning, testimonials,
 metrics, and additional technology claims. Only publish new experience or

@@ -34,23 +34,41 @@ export type Project = {
 
 export type ProjectGroup = {
   id: string;
+  region: "Australia" | "Philippines";
   badge: string;
   title: string;
   description: string;
+  company?: { name: string; href: string };
   tone: "accent" | "violet";
   projects: Project[];
 };
 
-const FREELANCE_ROLE = "Freelance · Web Development";
-const AGENCY_ROLE = "Agency · Lead WordPress Dev";
+const FREELANCE_ROLE = "Freelance · Design & Development";
+const AGENCY_ROLE = "Agency · Web Development";
+const COMPANY_ROLE = "Company · Web Development";
+
+const philippineProjects = [
+  { id: "zed-builders", name: "Zed Builders Inc.", monogram: "ZB", href: "https://zedbuildersinc.com/" },
+  { id: "zenhael-builders", name: "Zenhael Builders", monogram: "ZB", href: "https://www.zenhaelbuilders.com/" },
+  { id: "tktq-travels", name: "TKTQ Travels", monogram: "TQ", href: "https://tktqtravels.com/" },
+  { id: "jolly-group", name: "Jolly Group", monogram: "JG", href: "https://www.jolly.ph/" },
+  { id: "dn-group", name: "DN Group", monogram: "DN", href: "https://dngroup.com.ph/" },
+  { id: "mashaa-beauty", name: "Mashaa Beauty", monogram: "MB", href: "https://mashaabeauty.com/" },
+  { id: "northgate", name: "Northgate Technologies", monogram: "NT", href: "https://www.northgate.com.ph/" },
+  { id: "elzhan-luxe", name: "Elzhan Luxe Residences", monogram: "EL", href: "https://elzhanluxeresidences.com/" },
+  { id: "ag-international", name: "AG International", monogram: "AG", href: "https://aginternationalcoph.com/" },
+  { id: "southside-carwash", name: "Southside Carwash", monogram: "SC", href: "https://southsidecarwash.com.ph/" },
+  { id: "gtg-talent", name: "GTG Talent Consultancy", monogram: "GT", href: "https://gtgtalentconsultancy.com/" },
+] as const;
 
 export const projectGroups: ProjectGroup[] = [
   {
     id: "freelance",
+    region: "Australia",
     badge: "Freelance work",
-    title: "Freelance Web Development",
+    title: "Australian Freelance Work",
     description:
-      "Websites and digital projects delivered as a freelance web developer.",
+      "I designed and built the website, and handled hosting management, SEO, ads, and marketing.",
     tone: "accent",
     projects: [
       {
@@ -120,10 +138,11 @@ export const projectGroups: ProjectGroup[] = [
   },
   {
     id: "agency",
+    region: "Australia",
     badge: "Agency experience",
     title: "Australian Agency Experience",
     description:
-      "These are projects I worked on while working as a Lead WordPress Developer for an Australian agency.",
+      "I developed the website from designs supplied in Figma or Adobe XD while working with an Australian agency.",
     tone: "violet",
     projects: [
       {
@@ -223,5 +242,22 @@ export const projectGroups: ProjectGroup[] = [
         imageAlt: "Homepage of the Coredesk website",
       },
     ],
+  },
+  {
+    id: "itworks-global",
+    region: "Philippines",
+    badge: "Company work",
+    title: "Philippine Projects at ITWorks Global",
+    description:
+      "I built the website from scratch, working from company-provided Figma or Adobe XD designs.",
+    company: { name: "ITWorks Global", href: "https://itworkserv.com/" },
+    tone: "violet",
+    projects: philippineProjects.map((project) => ({
+      ...project,
+      role: COMPANY_ROLE,
+      summary: "Website built from scratch while working at ITWorks Global in the Philippines, based on supplied Figma or Adobe XD designs.",
+      accent: "violet" as const,
+      imageAlt: `Homepage of the ${project.name} website`,
+    })),
   },
 ];

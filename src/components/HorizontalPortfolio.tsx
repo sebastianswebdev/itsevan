@@ -40,9 +40,10 @@ const skills = [
 ] as const;
 
 const allProjects = projectGroups.flatMap((group) =>
-  group.projects.map((project) => ({ ...project, context: group.badge })),
+  group.projects.map((project) => ({ ...project, context: group.badge, region: group.region, scope: group.description, company: group.company })),
 );
 const projectBackdrops = allProjects.filter((project) => project.image).slice(0, 6);
+const projectRegions = ["Australia", "Philippines"] as const;
 
 function Arrow({ back = false }: { back?: boolean }) {
   return (
@@ -66,7 +67,9 @@ export function HorizontalPortfolio() {
   const [active, setActive] = useState(0);
   const [projectId, setProjectId] = useState(allProjects[0].id);
   const project = allProjects.find((item) => item.id === projectId)!;
-  const projectIndex = allProjects.findIndex((item) => item.id === projectId);
+  const visibleProjects = allProjects.filter((item) => item.region === project.region);
+  const visibleGroups = projectGroups.filter((group) => group.region === project.region);
+  const projectIndex = visibleProjects.findIndex((item) => item.id === projectId);
 
   const goTo = useCallback((index: number, focus = false, instant = false) => {
     const rail = railRef.current;
@@ -131,8 +134,8 @@ export function HorizontalPortfolio() {
   }, [goTo]);
 
   function changeProject(direction: number) {
-    const next = (projectIndex + direction + allProjects.length) % allProjects.length;
-    setProjectId(allProjects[next].id);
+    const next = (projectIndex + direction + visibleProjects.length) % visibleProjects.length;
+    setProjectId(visibleProjects[next].id);
   }
 
   return (
@@ -200,9 +203,17 @@ export function HorizontalPortfolio() {
             <div className={styles.workHeading}>
               <div><p className={styles.eyebrow}>02 — Selected work</p><h2 id="work-title">Made to <span>be used.</span></h2></div>
               <div className={styles.projectPicker}>
+                <div className={styles.regionSwitch} role="group" aria-label="Project country">
+                  {projectRegions.map((region) => (
+                    <button key={region} type="button" aria-pressed={project.region === region}
+                      onClick={() => setProjectId(allProjects.find((item) => item.region === region)!.id)}>
+                      {region} <span>{allProjects.filter((item) => item.region === region).length}</span>
+                    </button>
+                  ))}
+                </div>
                 <label htmlFor="project-picker">Explore the projects</label>
                 <select id="project-picker" value={projectId} onChange={(event) => setProjectId(event.target.value)}>
-                  {projectGroups.map((group) => <optgroup key={group.id} label={group.badge}>{group.projects.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</optgroup>)}
+                  {visibleGroups.map((group) => <optgroup key={group.id} label={group.company?.name ?? group.badge}>{group.projects.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</optgroup>)}
                 </select>
               </div>
             </div>
@@ -213,10 +224,12 @@ export function HorizontalPortfolio() {
                 <span className={styles.imageLink} aria-hidden="true">Visit website ↗</span>
               </a>
               <div className={styles.projectInfo}>
-                <p className={styles.projectContext}>{project.context}</p><h3>{project.name}</h3><p className={styles.projectRole}>{project.role}</p>
+                <p className={styles.projectContext}>{project.region} / {project.context}</p><h3>{project.name}</h3><p className={styles.projectRole}>{project.role}</p>
+                <p className={styles.projectScope}>{project.scope}</p>
+                {project.company && <a className={styles.companyCredit} href={project.company.href} target="_blank" rel="noopener noreferrer">Built at {project.company.name} <span aria-hidden="true">↗</span></a>}
                 <a className={styles.textLink} href={project.href} target="_blank" rel="noopener noreferrer">View website <span aria-hidden="true">↗</span></a>
                 <div className={styles.projectControls}>
-                  <span aria-live="polite">{String(projectIndex + 1).padStart(2, "0")} <span>/ {String(allProjects.length).padStart(2, "0")}</span></span>
+                  <span aria-live="polite">{String(projectIndex + 1).padStart(2, "0")} <span>/ {String(visibleProjects.length).padStart(2, "0")}</span></span>
                   <div><button onClick={() => changeProject(-1)} aria-label="Previous project"><Arrow back /></button><button onClick={() => changeProject(1)} aria-label="Next project"><Arrow /></button></div>
                 </div>
               </div>
