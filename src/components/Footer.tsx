@@ -5,7 +5,7 @@ import logo from "../../public/images/SW-Logo.png";
 import { Icon, type IconName } from "@/components/ui/icons";
 import { navLinks, site, socialLinks } from "@/data/site";
 
-const footerNav = navLinks.filter((link) => link.label !== "Testimonials");
+const footerNav = navLinks;
 
 export function Footer() {
   return (
@@ -20,9 +20,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
-              The freelance brand of {site.person} — WordPress development,
-              measurable marketing, and AI automation for businesses that want
-              to scale.
+              The freelance brand of {site.person} — web development,
+              paid ads, and AI automation.
             </p>
           </div>
 
@@ -67,7 +66,7 @@ export function Footer() {
             © 2026 Sebastian Works. All rights reserved.
           </p>
           <p className="font-mono text-[11px] tracking-[0.3em] text-ink-400 uppercase">
-            Build · Grow · Scale
+            Websites · Ads · Automation
           </p>
           <p className="text-xs text-ink-500">{site.tagline}</p>
         </div>
