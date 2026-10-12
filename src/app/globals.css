@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+:root {
+  --font-geist-mono: "SF Mono", Consolas, monospace;
+  --font-caveat: "Segoe Script", cursive;
+}
+
 @theme {
   /* Brand palette — light canvas, deep-blue accent.
 

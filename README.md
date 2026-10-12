@@ -3,9 +3,18 @@
 Premium portfolio website for **Sebastian Works** (Evan Sebastian Martinez) — Web
 Development · Performance Marketing · AI Automation.
 
-Built with Next.js (App Router), TypeScript, Tailwind CSS v4 and Motion
-(Framer Motion). The homepage features a scroll-driven, four-stage portrait
-sequence in the hero (executive → developer → marketer → automation).
+Built with Next.js (App Router), TypeScript and Tailwind CSS v4. The homepage
+is a compact horizontal portfolio with four slides: Hello, I can, Work, Contact.
+Its dark visual direction takes inspiration from https://madebykota.com/ while
+using Evan's own portrait, project imagery, and three confirmed skill areas.
+
+Navigate with the menu, slide arrows, mouse wheel, keyboard left/right arrows,
+or a horizontal swipe. Home/End jump to the first/last slide. Smaller screens
+allow vertical scrolling inside a slide when needed. Reduced motion settings
+disable animated transitions. Direct links such as `/#work` remain supported.
+
+Geist fonts are stored in `public/fonts/` with their SIL Open Font License, so
+building the portfolio does not require fetching fonts from Google.
 
 ## Development
 
@@ -21,7 +30,7 @@ npm run build    # production build
 ```
 src/
   app/            # layout (SEO metadata, fonts), homepage, /blog stub
-  components/     # section components (Hero, ScrollPortrait, Services, …)
+  components/     # HorizontalPortfolio + legacy section components
     ui/           # shared primitives (Button, Reveal, SectionHeading, icons)
   data/           # editable content: site config, portraits, services,
                   # projects, testimonials, results, technologies
@@ -31,15 +40,20 @@ public/images/    # brand + portrait assets
 
 ## Editing content
 
-- **Contact/booking links, social URLs** → `src/data/site.ts`
-  (the Upwork link is still a `#` placeholder — fill it in).
-- **Hero portrait stages** → `src/data/portraits.ts`.
-- **Testimonials** → `src/data/testimonials.ts` — the entries are clearly
-  marked placeholders; replace with real client quotes and remove the
-  `isPlaceholder` flag to drop the "Sample" badge.
-- **Results metrics** → `src/data/results.ts` — add a verified `stat` value
-  to any entry and the number takes the headline slot automatically.
-- **Case studies** → `src/data/projects.ts`.
+- **Contact links, social URLs, and metadata** → `src/data/site.ts`.
+- **Intro, three skills, and slide navigation** → `src/components/HorizontalPortfolio.tsx`.
+- **Layout and responsive styles** → `src/components/HorizontalPortfolio.module.css`.
+- **Projects** → `src/data/projects.ts`. All projects remain available in the
+  project selector: 12 Australian projects and 11 Philippine projects. Country
+  controls filter the selector and project arrows. Freelance work covers design,
+  development, hosting management, SEO, ads, and marketing. Agency/company work
+  is credited as development from supplied Figma or Adobe XD designs. The
+  Philippine projects were built from scratch while working at ITWorks Global.
+
+The homepage intentionally omits strategy/growth positioning, testimonials,
+metrics, and additional technology claims. Only publish new experience or
+results once Evan has confirmed them. Older section components and their data
+remain in the repository but are not rendered on the homepage.
 
 Root-level `web-design.png` is the original design reference;
 `me-with-crossedarms.png` is the unprocessed source for the About portrait

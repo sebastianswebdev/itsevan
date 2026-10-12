@@ -2,35 +2,29 @@ export const site = {
   name: "Sebastian Works",
   tagline: "Web Development · Performance Marketing · AI Automation",
   description:
-    "Sebastian Works builds high-performance websites, growth systems, and AI automation for businesses.",
+    "Evan Sebastian Martinez — web development, performance marketing (paid ads), and AI automation. Independent work through Sebastian Works.",
   url: "https://sebastianworks.dev",
   person: "Evan Sebastian Martinez",
   /** Actual working role. Sebastian Works is the freelance brand, not an agency. */
-  role: "Freelance WordPress Developer & Marketing Strategist",
+  role: "Web Developer · Performance Marketer · AI Automation",
   email: "evanmartinez@gmail.com",
   bookingHref:
-    "mailto:evanmartinez@gmail.com?subject=Strategy%20call%20with%20Sebastian%20Works",
+    "mailto:evanmartinez@gmail.com?subject=Project%20enquiry%20for%20Sebastian%20Works",
   contactHref: "mailto:evanmartinez@gmail.com",
 } as const;
 
 export const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
-  { label: "How I Work", href: "/#how-i-work" },
-  { label: "Services", href: "/#services" },
+  { label: "Hello", href: "/#intro" },
+  { label: "I can", href: "/#services" },
   { label: "Work", href: "/#work" },
-  { label: "Testimonials", href: "/#testimonials" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
-// TODO: replace the Upwork "#" placeholder with a real profile URL.
 export const socialLinks = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/evan-sebastian-martinez-a78aa927/",
     icon: "linkedin",
   },
-  { label: "Upwork", href: "#", icon: "briefcase" },
   { label: "Email", href: "mailto:evanmartinez@gmail.com", icon: "mail" },
 ] as const;
