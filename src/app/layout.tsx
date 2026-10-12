@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f8fc",
+  themeColor: "#090b0a",
   width: "device-width",
   initialScale: 1,
 };
@@ -81,8 +81,6 @@ const jsonLd = {
     "Web Development",
     "Performance Marketing",
     "AI Automation",
-    "Google Ads",
-    "Analytics",
   ],
 };
 

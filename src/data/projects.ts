@@ -41,16 +41,16 @@ export type ProjectGroup = {
   projects: Project[];
 };
 
-const FREELANCE_ROLE = "Freelance · WordPress & Marketing";
+const FREELANCE_ROLE = "Freelance · Web Development";
 const AGENCY_ROLE = "Agency · Lead WordPress Dev";
 
 export const projectGroups: ProjectGroup[] = [
   {
     id: "freelance",
     badge: "Freelance work",
-    title: "Freelance WordPress Development & Marketing Strategy",
+    title: "Freelance Web Development",
     description:
-      "These are websites and digital projects I personally delivered for clients as a freelance WordPress Developer and Marketing Strategist.",
+      "Websites and digital projects delivered as a freelance web developer.",
     tone: "accent",
     projects: [
       {
