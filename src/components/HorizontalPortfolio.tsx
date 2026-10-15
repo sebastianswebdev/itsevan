@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import portrait from "../../public/images/me-crossedarms-cut.png";
+import { clientTestimonial } from "@/data/client-testimonial";
 import { projectGroups } from "@/data/projects";
 import { site, socialLinks } from "@/data/site";
 import styles from "./HorizontalPortfolio.module.css";
@@ -12,6 +13,7 @@ const slides = [
   { id: "intro", label: "Hello" },
   { id: "services", label: "I can" },
   { id: "work", label: "Work" },
+  { id: "testimonials", label: "Kind words" },
   { id: "contact", label: "Contact" },
 ] as const;
 
@@ -64,6 +66,7 @@ export function HorizontalPortfolio() {
   const panelRefs = useRef<(HTMLElement | null)[]>([]);
   const activeRef = useRef(0);
   const wheelLock = useRef(0);
+  const testimonialVideoRef = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(0);
   const [projectId, setProjectId] = useState(allProjects[0].id);
   const project = allProjects.find((item) => item.id === projectId)!;
@@ -93,16 +96,21 @@ export function HorizontalPortfolio() {
     };
     const onHash = () => {
       const hash = window.location.hash.slice(1);
-      const aliases: Record<string, string> = { about: "intro", "how-i-work": "services", testimonials: "work" };
+      const aliases: Record<string, string> = { about: "intro", "how-i-work": "services" };
       const index = slides.findIndex((slide) => slide.id === (aliases[hash] ?? hash));
-      if (index >= 0) goTo(index, false, true);
+      if (index >= 0) {
+        goTo(index, false, true);
+        // Native fragment scrolling may have already positioned the rail.
+        // Sync the menu/counter even when scrollTo produces no new event.
+        onScroll();
+      }
     };
     const onResize = () => rail.scrollTo({ left: activeRef.current * rail.clientWidth, behavior: "instant" });
     const onWheel = (event: WheelEvent) => {
       // Preserve browser zoom and native horizontal trackpad gestures.
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || Math.abs(event.deltaY) < 4) return;
       const target = event.target as HTMLElement;
-      if (target.closest("select")) return;
+      if (target.closest("select, video")) return;
       const scroller = target.closest<HTMLElement>("[data-panel-scroll]");
       // At small viewports / enlarged text, let readers scroll the slide first.
       if (scroller && scroller.scrollHeight > scroller.clientHeight + 1) {
@@ -133,6 +141,10 @@ export function HorizontalPortfolio() {
     };
   }, [goTo]);
 
+  useEffect(() => {
+    if (slides[active].id !== "testimonials") testimonialVideoRef.current?.pause();
+  }, [active]);
+
   function changeProject(direction: number) {
     const next = (projectIndex + direction + visibleProjects.length) % visibleProjects.length;
     setProjectId(visibleProjects[next].id);
@@ -140,7 +152,7 @@ export function HorizontalPortfolio() {
 
   return (
     <div className={styles.portfolio} onKeyDown={(event) => {
-      if ((event.target as HTMLElement).closest("select, input, textarea, [contenteditable]")) return;
+      if ((event.target as HTMLElement).closest("select, input, textarea, video, summary, [contenteditable]")) return;
       if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
       event.preventDefault();
       const next = event.key === "Home" ? 0 : event.key === "End" ? slides.length - 1
@@ -160,7 +172,7 @@ export function HorizontalPortfolio() {
         </nav>
         <a className={styles.headerContact} href={site.contactHref}>Let&apos;s talk <span aria-hidden="true">↗</span></a>
       </header>
-      <main ref={railRef} className={styles.rail} aria-label="Evan's portfolio — four horizontal slides" tabIndex={-1}>
+      <main ref={railRef} className={styles.rail} aria-label="Evan's portfolio — five horizontal slides" tabIndex={-1}>
         <section id="intro" ref={(element) => { panelRefs.current[0] = element; }} className={`${styles.panel} ${styles.intro}`} tabIndex={-1} aria-labelledby="intro-title">
           <div className={styles.backdrop} aria-hidden="true">
             <div className={styles.backdropGrid}>
@@ -236,9 +248,41 @@ export function HorizontalPortfolio() {
             </div>
           </div>
         </section>
-        <section id="contact" ref={(element) => { panelRefs.current[3] = element; }} className={`${styles.panel} ${styles.contact}`} tabIndex={-1} aria-labelledby="contact-title">
+        <section id="testimonials" ref={(element) => { panelRefs.current[3] = element; }} className={`${styles.panel} ${styles.testimonial}`} tabIndex={-1} aria-labelledby="testimonial-title">
+          <div className={`${styles.panelContent} ${styles.testimonialContent}`} data-panel-scroll tabIndex={0} aria-label="Client testimonial content">
+            <div className={styles.testimonialCopy}>
+              <p className={styles.eyebrow}>03 — A client&apos;s perspective</p>
+              <h2 id="testimonial-title">Straight from <span>Danny.</span></h2>
+              <figure className={styles.testimonialQuote}>
+                <blockquote><p>“{clientTestimonial.quote}”</p></blockquote>
+                <figcaption>
+                  <span className={styles.clientName}>{clientTestimonial.name}</span>
+                  <span className={styles.clientCompanies}>{clientTestimonial.companies}</span>
+                  <span className={styles.clientRelationship}>{clientTestimonial.relationship}</span>
+                </figcaption>
+              </figure>
+              <p className={styles.testimonialWork}>{clientTestimonial.work}</p>
+              <details className={styles.transcript}>
+                <summary>Read the video transcript</summary>
+                <div>{clientTestimonial.transcript.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+              </details>
+            </div>
+            <figure className={styles.testimonialFilm}>
+              <div className={styles.videoFrame}>
+                <video ref={testimonialVideoRef} controls playsInline preload="none" poster={clientTestimonial.poster}
+                  width={480} height={854} aria-label="Danny's video testimonial for Evan Martinez">
+                  <source src={clientTestimonial.video} type="video/mp4" />
+                  <track src={clientTestimonial.captions} kind="captions" srcLang="en" label="English" default />
+                  Your browser cannot play this video. <a href={clientTestimonial.video}>Watch Danny&apos;s testimonial.</a>
+                </video>
+              </div>
+              <figcaption><span>In his own words</span><span>41 seconds · Sound on</span></figcaption>
+            </figure>
+          </div>
+        </section>
+        <section id="contact" ref={(element) => { panelRefs.current[4] = element; }} className={`${styles.panel} ${styles.contact}`} tabIndex={-1} aria-labelledby="contact-title">
           <div className={`${styles.panelContent} ${styles.contactContent}`} data-panel-scroll tabIndex={0} aria-label="Contact content">
-            <p className={styles.eyebrow}>03 — Let&apos;s make something</p>
+            <p className={styles.eyebrow}>04 — Let&apos;s make something</p>
             <h2 id="contact-title">Have an idea?<br /><span>Let&apos;s get it</span><br />moving.<span className={styles.contactStar} aria-hidden="true">✳</span></h2>
             <div className={styles.contactBottom}>
               <a className={styles.emailLink} href={site.contactHref}>{site.email} <span aria-hidden="true">↗</span></a>
@@ -255,7 +299,7 @@ export function HorizontalPortfolio() {
         </div>
         <div className={styles.slideControls}>
           <span className={styles.scrollHint}>Scroll or swipe <span aria-hidden="true">→</span></span>
-          <span className={styles.slideCount} aria-live="polite">{String(active + 1).padStart(2, "0")} <span>/ 04</span></span>
+          <span className={styles.slideCount} aria-live="polite">{String(active + 1).padStart(2, "0")} <span>/ {String(slides.length).padStart(2, "0")}</span></span>
           <button aria-label="Previous slide" disabled={active === 0} onClick={() => goTo(active - 1, true)}><Arrow back /></button>
           <button aria-label="Next slide" disabled={active === slides.length - 1} onClick={() => goTo(active + 1, true)}><Arrow /></button>
         </div>
