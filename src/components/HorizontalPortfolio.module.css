@@ -109,6 +109,33 @@
 .projectFallback { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; padding: 25px; background: radial-gradient(ellipse at center, #4b6339, #1c2815); }
 .projectFallback span { font-size: clamp(80px, 10vw, 140px); line-height: 1; letter-spacing: -.06em; color: #d6f09e; }
 .projectFallback p { font-size: 12px; text-align: center; }
+.testimonial { background: radial-gradient(ellipse at 82% 45%, #33412a55, transparent 60%), #10130f; }
+.testimonial::before, .testimonial::after { content: ""; position: absolute; z-index: 3; left: 0; right: 0; height: 110px; pointer-events: none; }
+.testimonial::before { top: 0; background: linear-gradient(#10130f 60%, #10130f00); }
+.testimonial::after { bottom: 0; background: linear-gradient(#10130f00, #10130f 55%); }
+.testimonialContent { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8%; align-items: safe center; }
+.testimonialCopy { max-width: 640px; }
+.testimonialCopy h2 { margin-top: 22px; font-size: clamp(37px, 4.5vw, 68px); line-height: 1.05; font-weight: 400; letter-spacing: -.055em; }
+.testimonialCopy h2 span { color: var(--muted); }
+.testimonialQuote { margin-top: 32px; }
+.testimonialQuote blockquote { max-width: 560px; font-size: clamp(23px, 2.4vw, 37px); line-height: 1.25; letter-spacing: -.035em; color: var(--lime); }
+.testimonialQuote figcaption { display: grid; gap: 6px; margin-top: 25px; }
+.clientName { font-size: 15px; }
+.clientCompanies { font-size: 12px; line-height: 1.6; color: #c5cbbd; }
+.clientRelationship { font-size: 10px; color: #a7b09e; }
+.testimonialWork { width: fit-content; margin-top: 20px; padding-top: 14px; border-top: 1px solid #ffffff22; font-size: 10px; color: #bdc6b2; }
+.transcript { margin-top: 20px; max-width: 560px; font-size: 11px; line-height: 1.7; color: #b6bfae; }
+.transcript summary { width: fit-content; cursor: pointer; padding: 5px 0; color: #e0e7d6; text-underline-offset: 4px; }
+.transcript summary:hover { color: var(--lime); }
+.transcript summary:focus-visible { outline: 2px solid var(--lime); outline-offset: 5px; }
+.transcript[open] summary { margin-bottom: 12px; }
+.transcript p + p { margin-top: 10px; }
+.testimonialFilm { width: min(100%, 315px); justify-self: center; }
+.videoFrame { position: relative; border: 1px solid #ffffff2b; border-radius: 14px; overflow: hidden; background: #080a07; box-shadow: 0 25px 70px #0005; }
+.videoFrame video { display: block; width: 100%; height: auto; max-height: max(280px, calc(100dvh - 288px)); aspect-ratio: 480 / 854; object-fit: contain; background: #080a07; }
+.videoFrame video:focus-visible { outline: 2px solid var(--lime); outline-offset: -3px; }
+.testimonialFilm > figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 9px; line-height: 1.6; color: #aeb8a3; }
+.testimonialFilm > figcaption > span:first-child { color: var(--lime); }
 .contact { background: radial-gradient(ellipse at 85% 30%, #42523833, transparent 50%), #0e110d; }
 .contactContent { display: flex; flex-direction: column; justify-content: safe center; }
 .contact h2 { font-size: clamp(55px, 7.9vw, 126px); font-weight: 400; line-height: .98; letter-spacing: -.065em; margin-top: 28px; }
@@ -140,7 +167,9 @@
   .panelContent { padding-inline: 9%; }
 }
 @media (max-width: 1050px) {
-  .nav a { padding-inline: 16px; }
+  .nav a { padding-inline: 12px; }
+  .wordmark { min-width: 120px; }
+  .headerContact { min-width: 110px; }
   .introCopy { width: 80%; }
   .intro h1 { font-size: 6.2vw; }
   .portrait { width: 52%; }
@@ -209,6 +238,17 @@
   .projectRole { margin-top: 9px; }
   .projectInfo .textLink { margin-top: 8px; }
   .projectControls { margin-top: 19px; padding-top: 13px; }
+  .testimonialContent { display: flex; flex-direction: column; align-items: stretch; gap: 28px; }
+  .testimonial::before { height: 145px; background: linear-gradient(#10130f 85%, #10130f00); }
+  .testimonialCopy h2 { margin-top: 14px; font-size: 38px; }
+  .testimonialQuote { margin-top: 22px; }
+  .testimonialQuote blockquote { font-size: 26px; max-width: 420px; }
+  .testimonialQuote figcaption { margin-top: 19px; }
+  .clientCompanies { font-size: 11px; }
+  .testimonialFilm { align-self: center; width: min(100%, 285px); }
+  .videoFrame video { max-height: none; }
+  .testimonialWork { margin-top: 16px; }
+  .transcript { margin-top: 14px; }
   .contact h2 { font-size: clamp(46px, 12.6vw, 80px); margin-top: 25px; }
   .contactStar { margin-left: 16px; }
   .contactBottom { gap: 23px; margin-top: 32px; }
@@ -228,6 +268,9 @@
   .projectImage { max-height: 42dvh; aspect-ratio: auto; }
   .projectInfo h3 { font-size: 2.4vw; }
   .projectControls { margin-top: 20px; }
+  .testimonialCopy h2 { font-size: 3.8vw; }
+  .testimonialQuote { margin-top: 22px; }
+  .testimonialQuote blockquote { font-size: 2.1vw; }
   .contact h2 { font-size: 6vw; }
   .contactBottom { margin-top: 25px; }
 }
@@ -240,4 +283,8 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .portfolio *, .portfolio *::before, .portfolio *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+@media (max-width: 380px) {
+  .progress { display: none; }
+  .nav a { font-size: 10px; }
 }

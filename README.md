@@ -4,7 +4,8 @@ Premium portfolio website for **Sebastian Works** (Evan Sebastian Martinez) — 
 Development · Performance Marketing · AI Automation.
 
 Built with Next.js (App Router), TypeScript and Tailwind CSS v4. The homepage
-is a compact horizontal portfolio with four slides: Hello, I can, Work, Contact.
+is a compact horizontal portfolio with five slides: Hello, I can, Work,
+Kind words, Contact.
 Its dark visual direction takes inspiration from https://madebykota.com/ while
 using Evan's own portrait, project imagery, and three confirmed skill areas.
 
@@ -50,10 +51,19 @@ public/images/    # brand + portrait assets
   is credited as development from supplied Figma or Adobe XD designs. The
   Philippine projects were built from scratch while working at ITWorks Global.
 
-The homepage intentionally omits strategy/growth positioning, testimonials,
-metrics, and additional technology claims. Only publish new experience or
-results once Evan has confirmed them. Older section components and their data
-remain in the repository but are not rendered on the homepage.
+- **Danny's video testimonial** → `src/data/client-testimonial.ts`. The supplied
+  recording is self-hosted in `public/videos/`, with English captions and a
+  readable transcript. The Kind words slide credits Prestige Tractors and Neale
+  Goad Automotive, and pauses playback when a visitor leaves the slide. Playback
+  is user-initiated; the video is not downloaded on initial page load.
+
+The homepage intentionally omits strategy/growth positioning, placeholder
+testimonials, standalone metrics, and additional technology claims. Danny's
+testimonial is the genuine client recording supplied by Evan; the quote is an
+excerpt from it, not invented copy. Any results mentioned in the recording are
+Danny's own account, not an independently verified metric. Only publish new
+experience or results once Evan has confirmed them. Older section components
+and their data remain in the repository but are not rendered on the homepage.
 
 Root-level `web-design.png` is the original design reference;
 `me-with-crossedarms.png` is the unprocessed source for the About portrait
