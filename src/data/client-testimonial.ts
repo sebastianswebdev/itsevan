@@ -1,4 +1,5 @@
-export const clientTestimonial = {
+export const clientTestimonials = [{
+  id: "danny",
   name: "Danny",
   companies: "Prestige Tractors & Neale Goad Automotive",
   relationship: "Freelance client · Australia",
@@ -7,9 +8,49 @@ export const clientTestimonial = {
   video: "/videos/danny-client-testimonial.mp4",
   poster: "/images/danny-client-testimonial.jpg",
   captions: "/videos/danny-client-testimonial.en.vtt",
+  width: 480,
+  height: 854,
+  duration: "41 seconds",
   transcript: [
     "Hi, my name is Danny with Prestige Tractors and Neale Goad Automotive. We’ve had the pleasure of working with Evan Martinez for a little while now. He’s been helping us build our websites for both companies as well as do Google Ads.",
     "Evan’s very cluey in his department. He’s also helped us grow our business with probably, I’d say, double our business capacity as far as customers coming in and out of the workshop, as well as tractor sales in the Prestige Tractors side.",
     "Evan’s always there to lend a hand, nothing seems to be too hard, and he’s very cluey in that sort of industry, so strongly recommend using him.",
   ],
-} as const;
+}, {
+  id: "carl-john-fechner",
+  name: "Carl John Fechner",
+  companies: "Growing Deep and Strong (GDAS) · Find Your Destiny · Personal portfolio",
+  relationship: "Freelance client · Australia",
+  work: "Web development, hosting & digital marketing",
+  quote: "He’s reliable, quick to learn and adaptable when we need something new.",
+  video: "/videos/carl-john-fechner-testimonial.mp4",
+  poster: "/images/carl-john-fechner-testimonial.jpg",
+  captions: "/videos/carl-john-fechner-testimonial.en.vtt",
+  width: 640,
+  height: 360,
+  duration: "32 seconds",
+  transcript: [
+    "Hi, I’m Carl Fechner, and Evan Martinez built the website for Growing Deep and Strong and Find Your Destiny and my personal website, carljohnfechner.com.",
+    "He’s reliable, quick to learn and adaptable when we need something new. He works closely with me to turn project requirements into working websites, and we continue to work together.",
+    "And I would happily recommend Evan to anyone looking for a capable web developer.",
+  ],
+}, {
+  id: "annette-keat",
+  name: "Annette Keat",
+  companies: "Inner Peace In-Home Nursing & Care · innerpeace.vision",
+  relationship: "Freelance client · Australia",
+  work: "Web development & SEO",
+  quote: "He’s knowledgeable, he’s very, very reliable and he can handle complex WordPress development projects.",
+  video: "/videos/annette-keat-testimonial.mp4",
+  poster: "/images/annette-keat-testimonial.jpg",
+  captions: "/videos/annette-keat-testimonial.en.vtt",
+  width: 576,
+  height: 1024,
+  duration: "1 minute 7 seconds",
+  transcript: [
+    "Hi, my name is Annette and I’m from Inner Peace In-Home Nursing and Care. We worked with Evan on the development of our company website and a fully customised staff portal, both built using WordPress.",
+    "What stood out with Evan was his technical expertise and his ability to go beyond and above standard website development. So all through that process he was amazing. If there was anything that I wanted to add in, then he was just on to it straight away.",
+    "He was able to take our requirements and turn them into a professional website and a custom-built system designed around our business needs. He’s knowledgeable, he’s very, very reliable and he can handle complex WordPress development projects.",
+    "I’d highly recommend Evan to any business or digital agency looking for a skilled WordPress developer who can deliver more than just a standard website. So yeah, so thank you Evan, you’re amazing, love your work.",
+  ],
+}] as const;

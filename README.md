@@ -51,17 +51,22 @@ public/images/    # brand + portrait assets
   is credited as development from supplied Figma or Adobe XD designs. The
   Philippine projects were built from scratch while working at ITWorks Global.
 
-- **Danny's video testimonial** → `src/data/client-testimonial.ts`. The supplied
-  recording is self-hosted in `public/videos/`, with English captions and a
-  readable transcript. The Kind words slide credits Prestige Tractors and Neale
-  Goad Automotive, and pauses playback when a visitor leaves the slide. Playback
-  is user-initiated; the video is not downloaded on initial page load.
+- **Client video testimonials** → `src/data/client-testimonial.ts`. The Kind
+  words slide lets visitors select Danny, Carl John Fechner or Annette Keat.
+  Supplied recordings are self-hosted in `public/videos/`, with English captions
+  and readable transcripts. Carl is credited for Growing Deep and Strong
+  (GDAS), Find Your Destiny and his personal portfolio, with web development,
+  hosting and digital marketing. Annette is credited for Inner Peace
+  (innerpeace.vision), with web development and SEO. Playback is user-initiated
+  and pauses when changing clients or leaving the slide. Landscape and portrait
+  recordings retain their original proportions; videos are not downloaded on
+  initial page load.
 
 The homepage intentionally omits strategy/growth positioning, placeholder
-testimonials, standalone metrics, and additional technology claims. Danny's
-testimonial is the genuine client recording supplied by Evan; the quote is an
-excerpt from it, not invented copy. Any results mentioned in the recording are
-Danny's own account, not an independently verified metric. Only publish new
+testimonials, standalone metrics, and additional technology claims. The client
+testimonials are genuine recordings supplied by Evan; quotes are excerpts from
+them, not invented copy. Any results mentioned are each client's own account,
+not independently verified metrics. Only publish new
 experience or results once Evan has confirmed them. Older section components
 and their data remain in the repository but are not rendered on the homepage.
 
