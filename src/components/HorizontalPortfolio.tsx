@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import portrait from "../../public/images/me-crossedarms-cut.png";
 import { clientTestimonials } from "@/data/client-testimonial";
+import { education } from "@/data/education";
 import { projectGroups } from "@/data/projects";
 import { site, socialLinks } from "@/data/site";
 import styles from "./HorizontalPortfolio.module.css";
@@ -14,6 +15,7 @@ const slides = [
   { id: "services", label: "I can" },
   { id: "work", label: "Work" },
   { id: "testimonials", label: "Kind words" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ] as const;
 
@@ -174,7 +176,7 @@ export function HorizontalPortfolio() {
         </nav>
         <a className={styles.headerContact} href={site.contactHref}>Let&apos;s talk <span aria-hidden="true">↗</span></a>
       </header>
-      <main ref={railRef} className={styles.rail} aria-label="Evan's portfolio — five horizontal slides" tabIndex={-1}>
+      <main ref={railRef} className={styles.rail} aria-label={`Evan's portfolio — ${slides.length} horizontal slides`} tabIndex={-1}>
         <section id="intro" ref={(element) => { panelRefs.current[0] = element; }} className={`${styles.panel} ${styles.intro}`} tabIndex={-1} aria-labelledby="intro-title">
           <div className={styles.backdrop} aria-hidden="true">
             <div className={styles.backdropGrid}>
@@ -291,9 +293,39 @@ export function HorizontalPortfolio() {
             </figure>
           </div>
         </section>
-        <section id="contact" ref={(element) => { panelRefs.current[4] = element; }} className={`${styles.panel} ${styles.contact}`} tabIndex={-1} aria-labelledby="contact-title">
+        <section id="education" ref={(element) => { panelRefs.current[4] = element; }} className={`${styles.panel} ${styles.education}`} tabIndex={-1} aria-labelledby="education-title">
+          <div className={`${styles.panelContent} ${styles.educationContent}`} data-panel-scroll tabIndex={0} aria-label="Education and awards content">
+            <div className={styles.educationHeading}>
+              <p className={styles.eyebrow}>04 — Education & recognition</p>
+              <h2 id="education-title">Where it <span>started.</span></h2>
+            </div>
+            <div className={styles.educationGrid}>
+              <figure className={styles.graduationPortrait}>
+                <Image src={education.graduationPhoto} width={959} height={960}
+                  alt="Evan Sebastian Martinez in STI graduation attire" sizes="(max-width: 700px) 80vw, 320px" />
+                <figcaption>{education.school} · Class of 2024</figcaption>
+              </figure>
+              <div className={styles.educationDetails}>
+                <p className={styles.educationSchool}>{education.school}</p>
+                <h3>{education.degree}</h3>
+                <p className={styles.educationDates}>{education.dates} · {education.location}</p>
+                <ul className={styles.educationHonors} aria-label="Graduation honors">
+                  {education.honors.map((honor) => <li key={honor}>{honor}</li>)}
+                </ul>
+                <div className={styles.codefestAward}>
+                  <p className={styles.eyebrow}>{education.award.event}</p>
+                  <h4>{education.award.title}</h4>
+                  <p>{education.award.context}</p>
+                  <a className={styles.textLink} href={education.award.photo} target="_blank" rel="noopener noreferrer">View award photo <span aria-hidden="true">↗</span></a>
+                </div>
+                <a className={styles.educationLinkedIn} href={socialLinks[0].href} target="_blank" rel="noopener noreferrer">More on LinkedIn <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="contact" ref={(element) => { panelRefs.current[5] = element; }} className={`${styles.panel} ${styles.contact}`} tabIndex={-1} aria-labelledby="contact-title">
           <div className={`${styles.panelContent} ${styles.contactContent}`} data-panel-scroll tabIndex={0} aria-label="Contact content">
-            <p className={styles.eyebrow}>04 — Let&apos;s make something</p>
+            <p className={styles.eyebrow}>05 — Let&apos;s make something</p>
             <h2 id="contact-title">Have an idea?<br /><span>Let&apos;s get it</span><br />moving.<span className={styles.contactStar} aria-hidden="true">✳</span></h2>
             <div className={styles.contactBottom}>
               <a className={styles.emailLink} href={site.contactHref}>{site.email} <span aria-hidden="true">↗</span></a>
