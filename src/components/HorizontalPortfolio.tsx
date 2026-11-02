@@ -69,6 +69,10 @@ export function HorizontalPortfolio() {
   const activeRef = useRef(0);
   const wheelLock = useRef(0);
   const testimonialVideoRef = useRef<HTMLVideoElement>(null);
+  const testimonialScrollerRef = useRef<HTMLDivElement>(null);
+  const testimonialStoryRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const clientTestimonial = clientTestimonials[testimonialIndex];
@@ -149,13 +153,41 @@ export function HorizontalPortfolio() {
     if (slides[active].id !== "testimonials") testimonialVideoRef.current?.pause();
   }, [active]);
 
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 901px)");
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+
+  function showTestimonial(index: number) {
+    if (index < 0 || index >= clientTestimonials.length) return;
+    testimonialVideoRef.current?.pause();
+    setTestimonialIndex(index);
+    const story = testimonialStoryRef.current;
+    if (story && window.matchMedia("(max-width: 900px)").matches) {
+      testimonialScrollerRef.current?.scrollTo({
+        top: Math.max(0, story.offsetTop - 112),
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      });
+    }
+  }
+
   function changeProject(direction: number) {
     const next = (projectIndex + direction + visibleProjects.length) % visibleProjects.length;
     setProjectId(visibleProjects[next].id);
   }
 
   return (
-    <div className={styles.portfolio} onKeyDown={(event) => {
+    <div className={styles.portfolio} onClick={(event) => {
+      if (menuOpen && !(event.target as HTMLElement).closest("header")) setMenuOpen(false);
+    }} onKeyDown={(event) => {
+      if (event.key === "Escape" && menuOpen) {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if ((event.target as HTMLElement).closest("[data-section-menu], [data-client-controls]")) return;
       if ((event.target as HTMLElement).closest("select, input, textarea, video, summary, [contenteditable]")) return;
       if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
       event.preventDefault();
@@ -168,10 +200,14 @@ export function HorizontalPortfolio() {
         <a className={styles.wordmark} href="#intro" aria-label="Sebastian Works — home" onClick={(event) => { event.preventDefault(); goTo(0); }}>
           sebastian<span>works</span>
         </a>
-        <nav className={styles.nav} aria-label="Main navigation">
+        <button ref={menuButtonRef} type="button" className={styles.menuToggle} aria-expanded={menuOpen}
+          aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? "Close" : "Menu"}<span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
+        </button>
+        <nav id="main-navigation" className={styles.nav} aria-label="Main navigation" data-open={menuOpen} data-section-menu>
           {slides.map((slide, index) => (
             <a key={slide.id} href={`#${slide.id}`} aria-current={active === index ? "page" : undefined}
-              onClick={(event) => { event.preventDefault(); goTo(index, true); }}>{slide.label}</a>
+              onClick={(event) => { event.preventDefault(); setMenuOpen(false); goTo(index, true); }}>{slide.label}</a>
           ))}
         </nav>
         <a className={styles.headerContact} href={site.contactHref}>Let&apos;s talk <span aria-hidden="true">↗</span></a>
@@ -253,18 +289,32 @@ export function HorizontalPortfolio() {
           </div>
         </section>
         <section id="testimonials" ref={(element) => { panelRefs.current[3] = element; }} className={`${styles.panel} ${styles.testimonial}`} tabIndex={-1} aria-labelledby="testimonial-title">
-          <div className={`${styles.panelContent} ${styles.testimonialContent}`} data-panel-scroll tabIndex={0} aria-label="Client testimonial content">
-            <div className={styles.testimonialCopy}>
-              <p className={styles.eyebrow}>03 — A client&apos;s perspective</p>
+          <div ref={testimonialScrollerRef} className={`${styles.panelContent} ${styles.testimonialContent}`} data-panel-scroll tabIndex={0} aria-label="Client testimonial content">
+            <div className={styles.testimonialHeading}>
+              <p className={styles.eyebrow}>03 — Client stories</p>
               <h2 id="testimonial-title">In their <span>own words.</span></h2>
-              <div className={styles.testimonialPicker} role="group" aria-label="Choose a client testimonial">
+              <p>Watch a video below. Choose a client to hear another perspective.</p>
+            </div>
+            <div className={styles.clientChoiceLabel}><h3>Choose a client</h3><span>{clientTestimonials.length} video testimonials</span></div>
+              <div className={styles.testimonialPicker} role="group" aria-label="Choose a client testimonial" data-client-controls>
                 {clientTestimonials.map((item, index) => (
-                  <button key={item.id} type="button" aria-pressed={index === testimonialIndex}
-                    onClick={() => { testimonialVideoRef.current?.pause(); setTestimonialIndex(index); }}>
-                    {item.name}
+                  <button key={item.id} type="button" aria-pressed={index === testimonialIndex} aria-controls="client-story"
+                    onClick={() => showTestimonial(index)}>
+                    <Image src={item.poster} width={52} height={52} alt="" sizes="52px" />
+                    <span><strong>{item.name}</strong><span>{item.work}</span></span>
+                    <span className={styles.clientChoiceAction}>{index === testimonialIndex ? "Selected" : "Watch video"}<span aria-hidden="true">{index === testimonialIndex ? "✓" : "→"}</span></span>
                   </button>
                 ))}
               </div>
+            <div id="client-story" ref={testimonialStoryRef} className={styles.testimonialStory}>
+              <div className={styles.clientNavigation} role="group" aria-label="Browse client stories" data-client-controls>
+                <button type="button" disabled={testimonialIndex === 0} onClick={() => showTestimonial(testimonialIndex - 1)} aria-label="Previous client"><Arrow back /><span>Previous client</span></button>
+                <p role="status">Client {testimonialIndex + 1} of {clientTestimonials.length}<span>{clientTestimonial.name}</span></p>
+                <button type="button" onClick={() => showTestimonial((testimonialIndex + 1) % clientTestimonials.length)} aria-label={testimonialIndex < clientTestimonials.length - 1 ? `Next client: ${clientTestimonials[testimonialIndex + 1].name}` : "Back to first client: Danny"}>
+                  <span>{testimonialIndex < clientTestimonials.length - 1 ? "Next client" : "Back to first client"}<strong>{clientTestimonials[(testimonialIndex + 1) % clientTestimonials.length].name}</strong></span><Arrow />
+                </button>
+              </div>
+            <div className={styles.testimonialCopy}>
               <figure className={styles.testimonialQuote}>
                 <blockquote><p>“{clientTestimonial.quote}”</p></blockquote>
                 <figcaption>
@@ -289,8 +339,9 @@ export function HorizontalPortfolio() {
                   Your browser cannot play this video. <a href={clientTestimonial.video}>Watch {clientTestimonial.name}&apos;s testimonial.</a>
                 </video>
               </div>
-              <figcaption><span>{String(testimonialIndex + 1).padStart(2, "0")} / {String(clientTestimonials.length).padStart(2, "0")} · Client testimonial</span><span>{clientTestimonial.duration} · Sound on</span></figcaption>
+              <figcaption><span>Press play to watch</span><span>{clientTestimonial.duration} · Sound on</span></figcaption>
             </figure>
+            </div>
           </div>
         </section>
         <section id="education" ref={(element) => { panelRefs.current[4] = element; }} className={`${styles.panel} ${styles.education}`} tabIndex={-1} aria-labelledby="education-title">
@@ -341,10 +392,9 @@ export function HorizontalPortfolio() {
           {slides.map((slide, index) => <button key={slide.id} aria-label={`Go to ${slide.label} slide`} aria-current={active === index ? "step" : undefined} onClick={() => goTo(index, true)}><span /></button>)}
         </div>
         <div className={styles.slideControls}>
-          <span className={styles.scrollHint}>Scroll or swipe <span aria-hidden="true">→</span></span>
+          <button aria-label={active > 0 ? `Previous section: ${slides[active - 1].label}` : "Previous section"} disabled={active === 0} onClick={() => goTo(active - 1, true)}><Arrow back /><span>Back{active > 0 ? `: ${slides[active - 1].label}` : ""}</span></button>
           <span className={styles.slideCount} aria-live="polite">{String(active + 1).padStart(2, "0")} <span>/ {String(slides.length).padStart(2, "0")}</span></span>
-          <button aria-label="Previous slide" disabled={active === 0} onClick={() => goTo(active - 1, true)}><Arrow back /></button>
-          <button aria-label="Next slide" disabled={active === slides.length - 1} onClick={() => goTo(active + 1, true)}><Arrow /></button>
+          <button aria-label={active < slides.length - 1 ? `Next section: ${slides[active + 1].label}` : "Last section"} disabled={active === slides.length - 1} onClick={() => goTo(active + 1, true)}><span>{active < slides.length - 1 ? `Next: ${slides[active + 1].label}` : "Last section"}</span><Arrow /></button>
         </div>
       </footer>
     </div>
