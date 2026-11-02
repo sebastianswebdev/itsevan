@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import portrait from "../../public/images/me-crossedarms-cut.png";
-import { clientTestimonial } from "@/data/client-testimonial";
+import { clientTestimonials } from "@/data/client-testimonial";
 import { projectGroups } from "@/data/projects";
 import { site, socialLinks } from "@/data/site";
 import styles from "./HorizontalPortfolio.module.css";
@@ -68,6 +68,8 @@ export function HorizontalPortfolio() {
   const wheelLock = useRef(0);
   const testimonialVideoRef = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(0);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const clientTestimonial = clientTestimonials[testimonialIndex];
   const [projectId, setProjectId] = useState(allProjects[0].id);
   const project = allProjects.find((item) => item.id === projectId)!;
   const visibleProjects = allProjects.filter((item) => item.region === project.region);
@@ -252,7 +254,15 @@ export function HorizontalPortfolio() {
           <div className={`${styles.panelContent} ${styles.testimonialContent}`} data-panel-scroll tabIndex={0} aria-label="Client testimonial content">
             <div className={styles.testimonialCopy}>
               <p className={styles.eyebrow}>03 — A client&apos;s perspective</p>
-              <h2 id="testimonial-title">Straight from <span>Danny.</span></h2>
+              <h2 id="testimonial-title">In their <span>own words.</span></h2>
+              <div className={styles.testimonialPicker} role="group" aria-label="Choose a client testimonial">
+                {clientTestimonials.map((item, index) => (
+                  <button key={item.id} type="button" aria-pressed={index === testimonialIndex}
+                    onClick={() => { testimonialVideoRef.current?.pause(); setTestimonialIndex(index); }}>
+                    {item.name}
+                  </button>
+                ))}
+              </div>
               <figure className={styles.testimonialQuote}>
                 <blockquote><p>“{clientTestimonial.quote}”</p></blockquote>
                 <figcaption>
@@ -262,21 +272,22 @@ export function HorizontalPortfolio() {
                 </figcaption>
               </figure>
               <p className={styles.testimonialWork}>{clientTestimonial.work}</p>
-              <details className={styles.transcript}>
+              <details key={clientTestimonial.id} className={styles.transcript}>
                 <summary>Read the video transcript</summary>
                 <div>{clientTestimonial.transcript.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
               </details>
             </div>
-            <figure className={styles.testimonialFilm}>
+            <figure className={`${styles.testimonialFilm} ${clientTestimonial.width > clientTestimonial.height ? styles.landscapeFilm : ""}`}>
               <div className={styles.videoFrame}>
-                <video ref={testimonialVideoRef} controls playsInline preload="none" poster={clientTestimonial.poster}
-                  width={480} height={854} aria-label="Danny's video testimonial for Evan Martinez">
+                <video key={clientTestimonial.id} ref={testimonialVideoRef} controls playsInline preload="none" poster={clientTestimonial.poster}
+                  width={clientTestimonial.width} height={clientTestimonial.height}
+                  aria-label={`${clientTestimonial.name}'s video testimonial for Evan Martinez`}>
                   <source src={clientTestimonial.video} type="video/mp4" />
                   <track src={clientTestimonial.captions} kind="captions" srcLang="en" label="English" default />
-                  Your browser cannot play this video. <a href={clientTestimonial.video}>Watch Danny&apos;s testimonial.</a>
+                  Your browser cannot play this video. <a href={clientTestimonial.video}>Watch {clientTestimonial.name}&apos;s testimonial.</a>
                 </video>
               </div>
-              <figcaption><span>In his own words</span><span>41 seconds · Sound on</span></figcaption>
+              <figcaption><span>{String(testimonialIndex + 1).padStart(2, "0")} / {String(clientTestimonials.length).padStart(2, "0")} · Client testimonial</span><span>{clientTestimonial.duration} · Sound on</span></figcaption>
             </figure>
           </div>
         </section>
