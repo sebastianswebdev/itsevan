@@ -18,13 +18,14 @@ export const navLinks = [
   { label: "I can", href: "/#services" },
   { label: "Work", href: "/#work" },
   { label: "Kind words", href: "/#testimonials" },
+  { label: "Education", href: "/#education" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/evan-sebastian-martinez-a78aa927/",
+    href: "https://www.linkedin.com/in/evan-sebastian-martinez-a78aa9273/",
     icon: "linkedin",
   },
   { label: "Email", href: "mailto:evanmartinez@gmail.com", icon: "mail" },

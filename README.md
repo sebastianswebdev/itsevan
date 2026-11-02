@@ -4,8 +4,8 @@ Premium portfolio website for **Sebastian Works** (Evan Sebastian Martinez) — 
 Development · Performance Marketing · AI Automation.
 
 Built with Next.js (App Router), TypeScript and Tailwind CSS v4. The homepage
-is a compact horizontal portfolio with five slides: Hello, I can, Work,
-Kind words, Contact.
+is a compact horizontal portfolio with six slides: Hello, I can, Work,
+Kind words, Education, Contact.
 Its dark visual direction takes inspiration from https://madebykota.com/ while
 using Evan's own portrait, project imagery, and three confirmed skill areas.
 
@@ -50,6 +50,12 @@ public/images/    # brand + portrait assets
   development, hosting management, SEO, ads, and marketing. Agency/company work
   is credited as development from supplied Figma or Adobe XD designs. The
   Philippine projects were built from scratch while working at ITWorks Global.
+
+- **Education and awards** → `src/data/education.ts`. The Education slide
+  includes Evan’s STI College BS Computer Science degree (July 2020–July 2024),
+  Cum Laude and Leadership Awardee honors, and 1st Runner-Up in the local-level
+  Tagisan ng Talino Codefest hackathon (2022–23). The graduation portrait and
+  linked award photograph were supplied by Evan.
 
 - **Client video testimonials** → `src/data/client-testimonial.ts`. The Kind
   words slide lets visitors select Danny, Carl John Fechner or Annette Keat.
