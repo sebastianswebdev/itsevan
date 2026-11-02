@@ -10,7 +10,10 @@ Its dark visual direction takes inspiration from https://madebykota.com/ while
 using Evan's own portrait, project imagery, and three confirmed skill areas.
 
 Navigate with the menu, slide arrows, mouse wheel, keyboard left/right arrows,
-or a horizontal swipe. Home/End jump to the first/last slide. Smaller screens
+or a horizontal swipe. Home/End jump to the first/last slide.
+At widths up to 900px, a Menu button opens all six sections with large touch
+targets; it closes on selection, Escape, or a click outside the header. The
+footer names the next section, separately from the client-story controls. Smaller screens
 allow vertical scrolling inside a slide when needed. Reduced motion settings
 disable animated transitions. Direct links such as `/#work` remain supported.
 
@@ -58,7 +61,10 @@ public/images/    # brand + portrait assets
   linked award photograph were supplied by Evan.
 
 - **Client video testimonials** → `src/data/client-testimonial.ts`. The Kind
-  words slide lets visitors select Danny, Carl John Fechner or Annette Keat.
+  words slide shows three client cards for Danny, Carl John Fechner and Annette
+  Keat, plus a client counter and named Previous/Next client controls. The last
+  client links back to the first. On phones, choosing a client brings the video
+  and client controls into view.
   Supplied recordings are self-hosted in `public/videos/`, with English captions
   and readable transcripts. Carl is credited for Growing Deep and Strong
   (GDAS), Find Your Destiny and his personal portfolio, with web development,

@@ -22,6 +22,7 @@
 .skipLink:focus { top: 20px; }
 .header, .footer { position: absolute; z-index: 10; left: 3.2%; right: 3.2%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .header { top: 25px; }
+.menuToggle { display: none; }
 .wordmark { display: flex; flex-direction: column; font-size: 27px; line-height: .94; letter-spacing: -1.7px; font-weight: 600; min-width: 144px; }
 .wordmark span { font-size: 21px; letter-spacing: -.8px; font-weight: 400; }
 .nav { display: flex; gap: 4px; padding: 6px; border: 1px solid #ffffff1a; border-radius: 40px; background: #23252265; box-shadow: inset 0 1px 0 #ffffff0e; backdrop-filter: blur(22px); }
@@ -113,16 +114,36 @@
 .testimonial::before, .testimonial::after { content: ""; position: absolute; z-index: 3; left: 0; right: 0; height: 110px; pointer-events: none; }
 .testimonial::before { top: 0; background: linear-gradient(#10130f 60%, #10130f00); }
 .testimonial::after { bottom: 0; background: linear-gradient(#10130f00, #10130f 55%); }
-.testimonialContent { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8%; align-items: safe center; }
-.testimonialCopy { max-width: 640px; }
-.testimonialCopy h2 { margin-top: 22px; font-size: clamp(37px, 4.5vw, 68px); line-height: 1.05; font-weight: 400; letter-spacing: -.055em; }
-.testimonialCopy h2 span { color: var(--muted); }
-.testimonialPicker { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.testimonialPicker button { min-height: 44px; padding: 10px 16px; border: 1px solid #ffffff30; border-radius: 24px; color: #c5cbbd; background: #ffffff06; font-size: 11px; transition: color .2s, background .2s; }
+.testimonialContent { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); column-gap: 6%; align-items: center; align-content: safe center; padding-top: 112px; padding-bottom: 100px; }
+.testimonialHeading { grid-column: 1 / -1; grid-row: 1; }
+.testimonialHeading h2 { margin-top: 14px; font-size: clamp(34px, 3.4vw, 54px); font-weight: 400; letter-spacing: -.05em; line-height: 1.05; }
+.testimonialHeading h2 span { color: var(--muted); }
+.testimonialHeading > p:last-child { margin-top: 12px; color: #b9c2b0; font-size: 13px; line-height: 1.6; }
+.clientChoiceLabel { grid-column: 1; grid-row: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-top: 22px; }
+.clientChoiceLabel h3 { font-size: 13px; font-weight: 400; }
+.clientChoiceLabel > span { font-size: 11px; color: #a7b09e; }
+.testimonialStory { display: contents; }
+.clientNavigation { grid-column: 1; grid-row: 4; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: 24px; padding: 12px 0; border-block: 1px solid #ffffff25; }
+.clientNavigation button { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; width: fit-content; padding: 8px 14px; border: 1px solid #ffffff30; border-radius: 9px; font-size: 12px; text-align: left; background: #ffffff05; }
+.clientNavigation button:last-child { justify-self: end; background: var(--lime); border-color: var(--lime); color: #10130f; }
+.clientNavigation button:hover:not(:disabled) { filter: brightness(1.12); }
+.clientNavigation svg { width: 19px; height: 19px; flex-shrink: 0; }
+.clientNavigation strong { display: block; margin-top: 3px; font-weight: 600; }
+.clientNavigation p { text-align: center; font-size: 12px; line-height: 1.6; }
+.clientNavigation p span { display: block; color: #b9c2b0; font-size: 11px; }
+.testimonialCopy { grid-column: 1; grid-row: 5; max-width: 640px; margin-top: 24px; }
+.testimonialPicker { grid-column: 1; grid-row: 3; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+.testimonialPicker button { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 8px; align-items: center; min-width: 0; min-height: 86px; padding: 12px; border: 1px solid #ffffff30; border-radius: 12px; color: #c5cbbd; background: #ffffff06; font-size: 11px; text-align: left; transition: color .2s, background .2s; }
+.testimonialPicker img { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; object-fit: cover; object-position: center 30%; }
+.testimonialPicker button > span:nth-child(2) { min-width: 0; flex: 1; }
+.testimonialPicker strong { display: block; font-size: 13px; line-height: 1.4; font-weight: 500; }
+.testimonialPicker button > span:nth-child(2) > span { display: block; margin-top: 4px; font-size: 10px; line-height: 1.5; }
+.clientChoiceAction { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 10px; flex-shrink: 0; }
+.clientChoiceAction > span { font-size: 17px; }
 .testimonialPicker button:hover { background: #ffffff15; color: var(--paper); }
-.testimonialPicker button[aria-pressed="true"] { background: var(--lime); border-color: var(--lime); color: #10130f; }
-.testimonialQuote { margin-top: 26px; }
-.testimonialQuote blockquote { max-width: 560px; font-size: clamp(23px, 2.4vw, 37px); line-height: 1.25; letter-spacing: -.035em; color: var(--lime); }
+.testimonialPicker button[aria-pressed="true"] { background: #d6f09e16; border-color: var(--lime); color: var(--lime); }
+.testimonialQuote { margin-top: 0; }
+.testimonialQuote blockquote { max-width: 560px; font-size: clamp(23px, 2.2vw, 33px); line-height: 1.25; letter-spacing: -.035em; color: var(--lime); }
 .testimonialQuote figcaption { display: grid; gap: 6px; margin-top: 25px; }
 .clientName { font-size: 15px; }
 .clientCompanies { font-size: 12px; line-height: 1.6; color: #c5cbbd; }
@@ -134,9 +155,9 @@
 .transcript summary:focus-visible { outline: 2px solid var(--lime); outline-offset: 5px; }
 .transcript[open] summary { margin-bottom: 12px; }
 .transcript p + p { margin-top: 10px; }
-.testimonialFilm { width: min(100%, 315px); justify-self: center; }
+.testimonialFilm { grid-column: 2; grid-row: 2 / span 4; width: min(100%, 260px); justify-self: center; }
 .videoFrame { position: relative; border: 1px solid #ffffff2b; border-radius: 14px; overflow: hidden; background: #080a07; box-shadow: 0 25px 70px #0005; }
-.videoFrame video { display: block; width: 100%; height: auto; max-height: max(280px, calc(100dvh - 288px)); aspect-ratio: 480 / 854; object-fit: contain; background: #080a07; }
+.videoFrame video { display: block; width: 100%; height: auto; max-height: 400px; aspect-ratio: 480 / 854; object-fit: contain; background: #080a07; }
 .videoFrame video:focus-visible { outline: 2px solid var(--lime); outline-offset: -3px; }
 .landscapeFilm { width: min(100%, 600px); }
 .landscapeFilm .videoFrame video { aspect-ratio: 16 / 9; }
@@ -188,7 +209,8 @@
 .scrollHint span { margin-left: 8px; }
 .slideCount { font-family: var(--font-geist-mono), monospace; font-size: 10px; margin-right: 5px; white-space: nowrap; }
 .slideCount span { color: #adb5a4; }
-.slideControls button { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid #ffffff2b; transition: background .2s; }
+.slideControls button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 44px; min-height: 44px; padding: 10px 14px; border-radius: 24px; border: 1px solid #ffffff2b; font-size: 11px; transition: background .2s; }
+.slideControls button:last-child:not(:disabled) { color: var(--lime); border-color: #d6f09e55; }
 .slideControls button:hover:not(:disabled) { background: #ffffff19; }
 .slideControls svg { width: 15px; height: 15px; }
 @media (min-width: 1500px) {
@@ -209,14 +231,54 @@
   .skill { gap: 10px; grid-template-columns: 20px 1fr 30px; }
   .skillSymbol { font-size: 27px; }
   .projectStage { gap: 25px; }
+  .testimonialPicker button { gap: 8px; padding: 10px; }
+  .testimonialPicker img { width: 36px; height: 36px; }
+  .clientChoiceAction { font-size: 0; gap: 0; }
+  .progress { display: none; }
+}
+@media (min-width: 901px) and (max-width: 1500px) {
+  .testimonialPicker button > span:nth-child(2) > span { display: none; }
+  .testimonialPicker strong { font-size: 12px; }
+  .testimonialPicker img { width: 32px; height: 32px; }
+  .testimonialPicker button { grid-template-columns: 32px minmax(0, 1fr); gap: 6px; }
+}
+@media (max-width: 900px) {
+  .header { top: 20px; left: 6%; right: 6%; flex-wrap: nowrap; }
+  .headerContact { display: none; }
+  .menuToggle { display: inline-flex; align-items: center; justify-content: center; gap: 16px; margin-left: auto; min-width: 108px; min-height: 48px; padding: 10px 16px; font-size: 14px; border: 1px solid #ffffff35; border-radius: 28px; background: #1a201b; }
+  .menuToggle > span { font-size: 19px; line-height: 1; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 66px; max-height: calc(100dvh - 115px); overflow-y: auto; padding: 12px; border-radius: 18px; background: #171e18f5; box-shadow: 0 20px 45px #0008; }
+  .nav[data-open="true"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .nav a { display: flex; align-items: center; min-width: 0; min-height: 48px; padding: 12px 16px; font-size: 14px; border-radius: 10px; }
+  .nav a[aria-current] { color: var(--lime); background: #d6f09e15; }
+  .panelContent, .introContent { padding-top: 112px; }
+  .footer { left: 6%; right: 6%; bottom: max(16px, env(safe-area-inset-bottom)); }
+  .footerBrand, .progress { display: none; }
+  .slideControls { width: 100%; justify-content: space-between; }
+  .slideControls button { min-height: 46px; }
+  .testimonialContent { display: flex; flex-direction: column; align-items: stretch; }
+  .testimonialPicker { grid-template-columns: 1fr; gap: 8px; }
+  .testimonialPicker button { display: flex; min-height: 70px; padding: 10px 14px; gap: 12px; }
+  .testimonialPicker img { width: 44px; height: 44px; }
+  .clientChoiceAction { font-size: 11px; gap: 8px; }
+  .testimonialStory { display: flex; flex-direction: column; align-items: stretch; gap: 24px; }
+  .clientNavigation { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 10px; order: 0; margin-top: 0; }
+  .clientNavigation button { font-size: 11px; padding: 9px 12px; }
+  .clientNavigation button:last-child { justify-self: stretch; justify-content: space-between; }
+  .clientNavigation p { font-size: 11px; }
+  .clientNavigation p span { font-size: 10px; }
+  .testimonialFilm { order: 1; width: min(100%, 310px); align-self: center; }
+  .testimonialCopy { order: 2; max-width: none; margin-top: 0; }
+  .landscapeFilm { width: min(100%, 600px); }
+  .videoFrame video { max-height: min(48dvh, 420px); }
+  .testimonial::before, .education::before { height: 100px; }
 }
 @media (max-width: 700px) {
-  .header { top: 20px; left: 6%; right: 6%; flex-wrap: wrap; row-gap: 20px; }
+  .header { row-gap: 0; }
   .wordmark { font-size: 23px; min-width: auto; }
   .wordmark span { font-size: 17px; }
   .headerContact { min-width: auto; padding: 12px 18px; gap: 20px; font-size: 11px; }
-  .nav { order: 3; width: 100%; justify-content: space-between; padding: 4px; }
-  .nav a { text-align: center; flex: 1; min-width: 0; padding: 10px 2px; font-size: 10px; white-space: nowrap; }
+  .nav a { text-align: left; font-size: 14px; }
   .footer { left: 6%; right: 6%; bottom: max(18px, env(safe-area-inset-bottom)); gap: 5px; }
   .footerBrand { font-size: 9px; flex-shrink: 0; }
   .footerBrand > span { font-size: 8px; }
@@ -224,11 +286,11 @@
   .progress button { width: 16px; }
   .progress button span { width: 12px; }
   .slideControls { gap: 7px; }
-  .slideControls button { width: 29px; height: 29px; }
+  .slideControls button { width: auto; height: auto; }
   .slideCount { font-size: 9px; margin: 0; }
-  .panelContent { padding: 160px 6% 110px; }
+  .panelContent { padding: 112px 6% 110px; }
   .eyebrow { font-size: 9px; }
-  .introContent { padding: 160px 6% 120px; align-items: center; }
+  .introContent { padding: 112px 6% 120px; align-items: center; }
   .introCopy { width: 100%; }
   .introCopy > .eyebrow { margin-bottom: 23px; font-size: 8px; letter-spacing: .03em; }
   .intro h1 { font-size: clamp(33px, 9.3vw, 63px); line-height: 1.05; letter-spacing: -.06em; }
@@ -269,18 +331,18 @@
   .projectRole { margin-top: 9px; }
   .projectInfo .textLink { margin-top: 8px; }
   .projectControls { margin-top: 19px; padding-top: 13px; }
-  .testimonialContent { display: flex; flex-direction: column; align-items: stretch; gap: 28px; }
-  .testimonial::before { height: 145px; background: linear-gradient(#10130f 85%, #10130f00); }
-  .testimonialCopy h2 { margin-top: 14px; font-size: 38px; }
-  .testimonialQuote { margin-top: 22px; }
+  .testimonialContent { align-items: stretch; }
+  .testimonial::before { height: 100px; background: linear-gradient(#10130f 85%, #10130f00); }
+  .testimonialHeading h2 { font-size: 36px; }
+  .testimonialHeading > p:last-child { font-size: 12px; }
+  .testimonialQuote { margin-top: 0; }
   .testimonialQuote blockquote { font-size: 26px; max-width: 420px; }
   .testimonialQuote figcaption { margin-top: 19px; }
   .clientCompanies { font-size: 11px; }
-  .testimonialFilm { align-self: center; width: min(100%, 285px); }
-  .videoFrame video { max-height: none; }
+  .testimonialFilm { align-self: center; }
   .testimonialWork { margin-top: 16px; }
   .educationHeading h2 { font-size: 38px; }
-  .education::before { height: 145px; background: linear-gradient(#111514 85%, #11151400); }
+  .education::before { height: 100px; background: linear-gradient(#111514 85%, #11151400); }
   .educationContent { display: flex; flex-direction: column; align-items: stretch; justify-content: safe center; }
   .educationGrid { display: flex; flex-direction: column; align-items: stretch; gap: 28px; margin-top: 26px; }
   .graduationPortrait { width: min(100%, 290px); align-self: center; margin-top: 0; }
@@ -306,14 +368,12 @@
   .projectImage { max-height: 42dvh; aspect-ratio: auto; }
   .projectInfo h3 { font-size: 2.4vw; }
   .projectControls { margin-top: 20px; }
-  .testimonialCopy h2 { font-size: 3.8vw; }
-  .testimonialQuote { margin-top: 22px; }
   .testimonialQuote blockquote { font-size: 2.1vw; }
   .contact h2 { font-size: 6vw; }
   .contactBottom { margin-top: 25px; }
 }
 @media (max-height: 700px) and (max-width: 700px) {
-  .introContent { align-items: flex-start; padding-top: 163px; }
+  .introContent { align-items: flex-start; padding-top: 112px; }
   .intro h1 { font-size: 8.4vw; }
   .introBottom { margin-top: 20px; }
   .introCopy > .eyebrow { margin-bottom: 18px; }
@@ -324,5 +384,14 @@
 }
 @media (max-width: 380px) {
   .progress { display: none; }
-  .nav a { font-size: 10px; }
+}
+@media (max-width: 600px) {
+  .slideControls button:first-child > span { display: none; }
+  .clientNavigation { grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1.4fr); gap: 8px; }
+  .clientNavigation button:first-child { padding: 10px; }
+  .clientNavigation button:first-child > span { display: none; }
+  .clientNavigation button:last-child { padding: 9px 10px; gap: 8px; }
+  .clientNavigation svg { width: 18px; }
+  .clientChoiceAction { font-size: 0; gap: 0; }
+  .testimonialPicker strong { font-size: 13px; }
 }
