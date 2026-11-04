@@ -13,7 +13,11 @@ Navigate with the menu, slide arrows, mouse wheel, keyboard left/right arrows,
 or a horizontal swipe. Home/End jump to the first/last slide.
 At widths up to 900px, a Menu button opens all six sections with large touch
 targets; it closes on selection, Escape, or a click outside the header. The
-footer names the next section, separately from the client-story controls. Smaller screens
+footer names the next section, separately from the client-story controls.
+A persistent left/right guide explains horizontal navigation, and the Hello
+slide has an explicit “Explore right” button. A lime pointer light follows
+mouse movement and expands over interactive controls. It is decorative, ignores
+clicks, and is disabled for touch pointers and reduced-motion preferences. Smaller screens
 allow vertical scrolling inside a slide when needed. Reduced motion settings
 disable animated transitions. Direct links such as `/#work` remain supported.
 

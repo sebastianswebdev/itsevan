@@ -18,6 +18,13 @@
 .portfolio :is(button, a, select):focus-visible { outline: 2px solid var(--lime); outline-offset: 5px; }
 .panel:focus { outline: none; }
 .portfolio [data-panel-scroll]:focus-visible { outline: 1px solid var(--lime); outline-offset: -4px; }
+.pointerLight { display: none; position: absolute; z-index: 20; left: 0; top: 0; width: 1px; height: 1px; transform: translate3d(-1000px, -1000px, 0); pointer-events: none; opacity: 0; transition: opacity .2s; will-change: transform; }
+.pointerLight[data-visible="true"] { opacity: 1; }
+.pointerLight::before { content: ""; position: absolute; left: -180px; top: -180px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, #d6f09e20 0%, #d6f09e0b 35%, #d6f09e00 70%); }
+.pointerLight::after { content: ""; position: absolute; left: 0; top: 0; width: 26px; height: 26px; transform: translate(-50%, -50%); border: 1px solid #d6f09e9c; border-radius: 50%; box-shadow: 0 0 18px #d6f09e30; transition: width .16s, height .16s, background .16s; }
+.pointerLight > span { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--lime); transform: translate(-50%, -50%); }
+.pointerLight[data-interactive="true"]::after { width: 42px; height: 42px; background: #d6f09e0c; border-color: var(--lime); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) { .pointerLight { display: block; } }
 .skipLink { position: absolute; z-index: 100; top: -80px; left: 20px; padding: 12px 22px; background: var(--lime); color: #10130d; border-radius: 30px; }
 .skipLink:focus { top: 20px; }
 .header, .footer { position: absolute; z-index: 10; left: 3.2%; right: 3.2%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
@@ -60,6 +67,7 @@
 .roundButton { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; border: 1px solid #ffffff38; background: #ffffff0b; transition: background .2s, transform .2s; backdrop-filter: blur(15px); }
 .roundButton:hover { background: #ffffff20; transform: translateX(3px); }
 .roundButton svg { width: 22px; height: 22px; }
+.exploreButton { display: inline-flex; width: auto; flex-shrink: 0; gap: 16px; padding-inline: 20px; border-radius: 30px; font-size: 12px; color: var(--lime); }
 .portraitLabel { position: absolute; right: 7%; bottom: 135px; font-family: var(--font-geist-mono), monospace; font-size: 8px; letter-spacing: .12em; color: #a8aca3; writing-mode: vertical-rl; }
 .services { background: radial-gradient(ellipse at 20% 60%, #29302355, transparent 65%), #111411; }
 .services .panelContent { display: grid; grid-template-columns: 1fr 1.1fr; gap: 7%; align-content: safe center; }
@@ -200,7 +208,14 @@
 .footer { bottom: 24px; padding-top: 18px; border-top: 1px solid #ffffff22; }
 .footerBrand { font-size: 11px; line-height: 1.7; color: #d2d6cc; }
 .footerBrand > span { display: block; font-size: 9px; color: #adb3a7; }
-.progress { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; }
+.navigationGuide { position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.directionHint { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; font-size: 10px; line-height: 1.5; color: var(--lime); }
+.directionHint svg { width: 15px; height: 15px; }
+.directionHint svg:last-child { animation: sidewaysHint 2.6s ease-in-out infinite; }
+.touchDirection { display: none; }
+.progress { display: flex; align-items: center; gap: 4px; }
+@keyframes sidewaysHint { 0%, 65%, 100% { transform: translateX(0); } 30% { transform: translateX(4px); } }
+@media (hover: none), (pointer: coarse) { .mouseDirection { display: none; } .touchDirection { display: inline; } }
 .progress button { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; }
 .progress button span { display: block; width: 24px; height: 2px; background: #ffffff33; transition: background .3s, height .3s; }
 .progress button[aria-current] span { background: var(--lime); height: 3px; }
@@ -215,7 +230,7 @@
 .slideControls svg { width: 15px; height: 15px; }
 @media (min-width: 1500px) {
   .introCopy { width: 75%; }
-  .intro h1 { font-size: 6vw; }
+  .intro h1 { font-size: clamp(90px, 5vw, 110px); }
   .portrait { width: 46%; }
   .panelContent { padding-inline: 9%; }
 }
@@ -253,6 +268,9 @@
   .nav a[aria-current] { color: var(--lime); background: #d6f09e15; }
   .panelContent, .introContent { padding-top: 112px; }
   .footer { left: 6%; right: 6%; bottom: max(16px, env(safe-area-inset-bottom)); }
+  .footer { flex-direction: column; gap: 8px; }
+  .navigationGuide { position: static; transform: none; }
+  .directionHint { font-size: 10px; }
   .footerBrand, .progress { display: none; }
   .slideControls { width: 100%; justify-content: space-between; }
   .slideControls button { min-height: 46px; }
@@ -307,6 +325,7 @@
   .introBottom p { font-size: 11px; }
   .roundButton { width: 43px; height: 43px; }
   .roundButton svg { width: 18px; }
+  .exploreButton { width: auto; min-height: 44px; padding-inline: 14px; gap: 10px; font-size: 11px; }
   .services .panelContent { display: block; }
   .sectionHeading h2 { font-size: clamp(34px, 10vw, 58px); margin-top: 13px; }
   .sectionHeading h2 br { display: none; }
