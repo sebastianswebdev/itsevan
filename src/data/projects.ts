@@ -163,7 +163,7 @@ export const projectGroups: ProjectGroup[] = [
         summary:
           "A digital agency site spanning app development, web platforms, growth marketing and SEO.",
         accent: "blue",
-        href: "http://www.acuiti.au/",
+        href: "https://acuiti.au/",
         image: acuitiShot,
         imageAlt: "Homepage of the Acuiti website",
       },
@@ -247,7 +247,7 @@ export const projectGroups: ProjectGroup[] = [
         summary:
           "An operational platform for service businesses and agencies, run from a single system.",
         accent: "blue",
-        href: "http://coredesk.co/",
+        href: "https://coredesk.co/",
         image: coredeskShot,
         imageAlt: "Homepage of the Coredesk website",
       },
