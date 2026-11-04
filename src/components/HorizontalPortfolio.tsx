@@ -9,6 +9,7 @@ import { education } from "@/data/education";
 import { projectGroups } from "@/data/projects";
 import { site, socialLinks } from "@/data/site";
 import styles from "./HorizontalPortfolio.module.css";
+import { PointerLight } from "./PointerLight";
 
 const slides = [
   { id: "intro", label: "Hello" },
@@ -64,6 +65,7 @@ function Arrow({ back = false }: { back?: boolean }) {
 }
 
 export function HorizontalPortfolio() {
+  const surfaceRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLElement>(null);
   const panelRefs = useRef<(HTMLElement | null)[]>([]);
   const activeRef = useRef(0);
@@ -179,7 +181,7 @@ export function HorizontalPortfolio() {
   }
 
   return (
-    <div className={styles.portfolio} onClick={(event) => {
+    <div ref={surfaceRef} className={styles.portfolio} onClick={(event) => {
       if (menuOpen && !(event.target as HTMLElement).closest("header")) setMenuOpen(false);
     }} onKeyDown={(event) => {
       if (event.key === "Escape" && menuOpen) {
@@ -226,7 +228,7 @@ export function HorizontalPortfolio() {
               <h1 id="intro-title">Web development<span>Performance<br className={styles.desktopBreak} /> marketing<span className={styles.adsNote}>(paid ads)</span></span><span>AI automation<span className={styles.star} aria-hidden="true">✳</span></span></h1>
               <div className={styles.introBottom}>
                 <p>I build websites.<br />I run ads. I automate the repetitive stuff.</p>
-                <button className={styles.roundButton} onClick={() => goTo(1, true)} aria-label="Explore what I can do"><Arrow /></button>
+                <button className={`${styles.roundButton} ${styles.exploreButton}`} onClick={() => goTo(1, true)} aria-label="Explore the next page: I can"><span>Explore right</span><Arrow /></button>
               </div>
             </div>
             <span className={styles.portraitLabel}>EVAN / THE PERSON BEHIND THE WORK</span>
@@ -388,8 +390,11 @@ export function HorizontalPortfolio() {
       </main>
       <footer className={styles.footer}>
         <span className={styles.footerBrand}>Evan Sebastian Martinez<span>Independent / Sebastian Works</span></span>
+        <div className={styles.navigationGuide}>
+          <p className={styles.directionHint}><Arrow back /><span className={styles.mouseDirection}>Scroll to explore sideways</span><span className={styles.touchDirection}>Swipe left or right</span><Arrow /></p>
         <div className={styles.progress} aria-label="Slide navigation">
           {slides.map((slide, index) => <button key={slide.id} aria-label={`Go to ${slide.label} slide`} aria-current={active === index ? "step" : undefined} onClick={() => goTo(index, true)}><span /></button>)}
+        </div>
         </div>
         <div className={styles.slideControls}>
           <button aria-label={active > 0 ? `Previous section: ${slides[active - 1].label}` : "Previous section"} disabled={active === 0} onClick={() => goTo(active - 1, true)}><Arrow back /><span>Back{active > 0 ? `: ${slides[active - 1].label}` : ""}</span></button>
@@ -397,6 +402,7 @@ export function HorizontalPortfolio() {
           <button aria-label={active < slides.length - 1 ? `Next section: ${slides[active + 1].label}` : "Last section"} disabled={active === slides.length - 1} onClick={() => goTo(active + 1, true)}><span>{active < slides.length - 1 ? `Next: ${slides[active + 1].label}` : "Last section"}</span><Arrow /></button>
         </div>
       </footer>
+      <PointerLight surfaceRef={surfaceRef} />
     </div>
   );
 }
