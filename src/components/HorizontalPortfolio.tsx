@@ -10,6 +10,7 @@ import { projectGroups } from "@/data/projects";
 import { site, socialLinks } from "@/data/site";
 import styles from "./HorizontalPortfolio.module.css";
 import { PointerLight } from "./PointerLight";
+import { ProjectCarousel } from "./ProjectCarousel";
 
 const slides = [
   { id: "intro", label: "Hello" },
@@ -78,11 +79,6 @@ export function HorizontalPortfolio() {
   const [active, setActive] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const clientTestimonial = clientTestimonials[testimonialIndex];
-  const [projectId, setProjectId] = useState(allProjects[0].id);
-  const project = allProjects.find((item) => item.id === projectId)!;
-  const visibleProjects = allProjects.filter((item) => item.region === project.region);
-  const visibleGroups = projectGroups.filter((group) => group.region === project.region);
-  const projectIndex = visibleProjects.findIndex((item) => item.id === projectId);
 
   const goTo = useCallback((index: number, focus = false, instant = false) => {
     const rail = railRef.current;
@@ -175,10 +171,6 @@ export function HorizontalPortfolio() {
     }
   }
 
-  function changeProject(direction: number) {
-    const next = (projectIndex + direction + visibleProjects.length) % visibleProjects.length;
-    setProjectId(visibleProjects[next].id);
-  }
 
   return (
     <div ref={surfaceRef} className={styles.portfolio} onClick={(event) => {
@@ -189,7 +181,7 @@ export function HorizontalPortfolio() {
         menuButtonRef.current?.focus();
         return;
       }
-      if ((event.target as HTMLElement).closest("[data-section-menu], [data-client-controls]")) return;
+      if ((event.target as HTMLElement).closest("[data-section-menu], [data-client-controls], [data-project-carousel]")) return;
       if ((event.target as HTMLElement).closest("select, input, textarea, video, summary, [contenteditable]")) return;
       if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
       event.preventDefault();
@@ -256,37 +248,15 @@ export function HorizontalPortfolio() {
           <div className={`${styles.panelContent} ${styles.workContent}`} data-panel-scroll tabIndex={0} aria-label="Projects content">
             <div className={styles.workHeading}>
               <div><p className={styles.eyebrow}>02 — Selected work</p><h2 id="work-title">Made to <span>be used.</span></h2></div>
-              <div className={styles.projectPicker}>
-                <div className={styles.regionSwitch} role="group" aria-label="Project country">
-                  {projectRegions.map((region) => (
-                    <button key={region} type="button" aria-pressed={project.region === region}
-                      onClick={() => setProjectId(allProjects.find((item) => item.region === region)!.id)}>
-                      {region} <span>{allProjects.filter((item) => item.region === region).length}</span>
-                    </button>
-                  ))}
-                </div>
-                <label htmlFor="project-picker">Explore the projects</label>
-                <select id="project-picker" value={projectId} onChange={(event) => setProjectId(event.target.value)}>
-                  {visibleGroups.map((group) => <optgroup key={group.id} label={group.company?.name ?? group.badge}>{group.projects.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</optgroup>)}
-                </select>
-              </div>
+              <p className={styles.workGuide}>Two countries. A collection of websites.<span>Browse the rows · Select a website to visit ↗</span></p>
             </div>
-            <div className={styles.projectStage}>
-              <a className={styles.projectImage} href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.name} website (opens in a new tab)`}>
-                {project.image ? <Image key={project.id} src={project.image} alt={project.imageAlt} sizes="(max-width: 700px) 90vw, 62vw" />
-                  : <div className={styles.projectFallback}><span>{project.monogram}</span><p>{project.name}</p></div>}
-                <span className={styles.imageLink} aria-hidden="true">Visit website ↗</span>
-              </a>
-              <div className={styles.projectInfo}>
-                <p className={styles.projectContext}>{project.region} / {project.context}</p><h3>{project.name}</h3><p className={styles.projectRole}>{project.role}</p>
-                <p className={styles.projectScope}>{project.scope}</p>
-                {project.company && <a className={styles.companyCredit} href={project.company.href} target="_blank" rel="noopener noreferrer">Built at {project.company.name} <span aria-hidden="true">↗</span></a>}
-                <a className={styles.textLink} href={project.href} target="_blank" rel="noopener noreferrer">View website <span aria-hidden="true">↗</span></a>
-                <div className={styles.projectControls}>
-                  <span aria-live="polite">{String(projectIndex + 1).padStart(2, "0")} <span>/ {String(visibleProjects.length).padStart(2, "0")}</span></span>
-                  <div><button onClick={() => changeProject(-1)} aria-label="Previous project"><Arrow back /></button><button onClick={() => changeProject(1)} aria-label="Next project"><Arrow /></button></div>
-                </div>
-              </div>
+            <div className={styles.projectRows}>
+              {projectRegions.map((region, index) => <ProjectCarousel key={region} region={region}
+                projects={allProjects.filter((item) => item.region === region)} active={active === 2} reverse={index === 1} />)}
+            </div>
+            <div className={styles.workCredits}>
+              <p>Australia · Freelance design &amp; development / Agency development from supplied designs.</p>
+              <p>Philippines · Developed at <a href="https://itworkserv.com/" target="_blank" rel="noopener noreferrer">ITWorks Global ↗</a> from supplied Figma / Adobe XD designs.</p>
             </div>
           </div>
         </section>
