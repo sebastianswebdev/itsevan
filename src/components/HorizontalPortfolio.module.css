@@ -2,6 +2,7 @@
   --paper: #f1f1ed;
   --muted: #acaeaa;
   --lime: #d6f09e;
+  --section-surface: #0a0c0b;
   position: relative;
   height: 100svh;
   height: 100dvh;
@@ -11,6 +12,11 @@
   color: var(--paper);
   font-family: var(--font-geist-sans), sans-serif;
 }
+.portfolio[data-active-slide="services"] { --section-surface: #111411; }
+.portfolio[data-active-slide="work"] { --section-surface: #141614; }
+.portfolio[data-active-slide="testimonials"] { --section-surface: #10130f; }
+.portfolio[data-active-slide="education"] { --section-surface: #111514; }
+.portfolio[data-active-slide="contact"] { --section-surface: #0e110d; }
 .portfolio ::selection { background: var(--lime); color: #10130d; }
 .portfolio button, .portfolio a, .portfolio select { -webkit-tap-highlight-color: transparent; }
 .portfolio button { cursor: pointer; }
@@ -429,6 +435,11 @@
   .carouselCard { width: 160px; }
   .carouselCaption { padding: 8px 10px; }
   .carouselCaption h4 { font-size: 11px; }
+}
+@media (max-width: 900px), (max-height: 800px) {
+  .header::before, .footer::before { content: ""; position: absolute; z-index: -1; left: -9vw; right: -9vw; pointer-events: none; }
+  .header::before { top: -40px; bottom: -20px; background: linear-gradient(var(--section-surface) calc(100% - 18px), transparent); }
+  .footer::before { top: -24px; bottom: -40px; background: linear-gradient(transparent, var(--section-surface) 24px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .carouselControls .carouselPause { display: none; }

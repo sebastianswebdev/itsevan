@@ -173,7 +173,7 @@ export function HorizontalPortfolio() {
 
 
   return (
-    <div ref={surfaceRef} className={styles.portfolio} onClick={(event) => {
+    <div ref={surfaceRef} className={styles.portfolio} data-active-slide={slides[active].id} onClick={(event) => {
       if (menuOpen && !(event.target as HTMLElement).closest("header")) setMenuOpen(false);
     }} onKeyDown={(event) => {
       if (event.key === "Escape" && menuOpen) {
