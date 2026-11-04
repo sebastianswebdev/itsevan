@@ -83,12 +83,16 @@
 .skillDescription { font-size: 12px; line-height: 1.6; color: #b8bfb2; max-width: 310px; margin-top: 10px; }
 .skillSymbol { justify-self: end; align-self: center; color: #d6f09e; font-size: 35px; letter-spacing: -.1em; }
 .work { background: #141614; }
+.work::before, .work::after { content: ""; position: absolute; z-index: 3; left: 0; right: 0; height: 110px; pointer-events: none; }
+.work::before { top: 0; height: 100px; background: linear-gradient(#141614 85%, #14161400); }
+.work::after { bottom: 0; background: linear-gradient(#14161400, #141614 55%); }
 .workContent { display: flex; flex-direction: column; justify-content: safe center; padding-top: 112px; padding-bottom: 112px; }
 .workHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
 .workHeading h2 { font-size: clamp(32px, 3.5vw, 52px); font-weight: 400; line-height: 1.05; letter-spacing: -.06em; margin-top: 10px; }
 .workHeading h2 span { color: #a5ada0; }
 .workGuide { color: #d1d6c9; font-size: 12px; line-height: 1.7; }
 .workGuide > span { display: block; color: #a5b09c; font-size: 10px; }
+.workGuide .workMobileGuide { display: none; }
 .projectRows { display: grid; gap: 22px; }
 .projectCarousel { display: grid; grid-template-columns: 160px minmax(0, 1fr); align-items: center; gap: 20px; min-width: 0; }
 .carouselHeading { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 20px; }
@@ -342,6 +346,8 @@
   .workHeading h2 { font-size: 34px; }
   .workGuide { margin-top: 14px; font-size: 11px; }
   .workGuide > span { font-size: 10px; }
+  .workGuide .workDesktopGuide { display: none; }
+  .workGuide .workMobileGuide { display: block; }
   .projectCarousel { display: block; }
   .carouselHeading { flex-direction: row; align-items: center; gap: 12px; margin-bottom: 10px; }
   .carouselHeading h3 { display: block; font-size: 15px; }

@@ -248,7 +248,7 @@ export function HorizontalPortfolio() {
           <div className={`${styles.panelContent} ${styles.workContent}`} data-panel-scroll tabIndex={0} aria-label="Projects content">
             <div className={styles.workHeading}>
               <div><p className={styles.eyebrow}>02 — Selected work</p><h2 id="work-title">Made to <span>be used.</span></h2></div>
-              <p className={styles.workGuide}>Two countries. A collection of websites.<span>Browse the rows · Select a website to visit ↗</span></p>
+              <p className={styles.workGuide}>Two countries. A collection of websites.<span className={styles.workDesktopGuide}>Browse the rows · Select a website to visit ↗</span><span className={styles.workMobileGuide}>Swipe each row · Scroll down for Philippines ↓</span></p>
             </div>
             <div className={styles.projectRows}>
               {projectRegions.map((region, index) => <ProjectCarousel key={region} region={region}
