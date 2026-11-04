@@ -230,7 +230,7 @@
 .slideControls svg { width: 15px; height: 15px; }
 @media (min-width: 1500px) {
   .introCopy { width: 75%; }
-  .intro h1 { font-size: 6vw; }
+  .intro h1 { font-size: clamp(90px, 5vw, 110px); }
   .portrait { width: 46%; }
   .panelContent { padding-inline: 9%; }
 }
