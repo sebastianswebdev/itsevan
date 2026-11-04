@@ -90,9 +90,9 @@
 .workGuide { color: #d1d6c9; font-size: 12px; line-height: 1.7; }
 .workGuide > span { display: block; color: #a5b09c; font-size: 10px; }
 .projectRows { display: grid; gap: 22px; }
-.projectCarousel { min-width: 0; }
-.carouselHeading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
-.carouselHeading h3 { display: flex; align-items: baseline; gap: 12px; font-size: 16px; letter-spacing: -.02em; font-weight: 400; }
+.projectCarousel { display: grid; grid-template-columns: 160px minmax(0, 1fr); align-items: center; gap: 20px; min-width: 0; }
+.carouselHeading { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.carouselHeading h3 { display: flex; flex-direction: column; align-items: baseline; gap: 8px; font-size: 16px; letter-spacing: -.02em; font-weight: 400; }
 .carouselHeading h3 > span { font-family: var(--font-geist-mono), monospace; font-size: 9px; color: #9ea996; letter-spacing: 0; }
 .carouselControls { display: flex; align-items: center; gap: 6px; }
 .carouselControls button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 34px; min-width: 36px; padding: 6px 10px; border: 1px solid #ffffff2c; border-radius: 22px; font-size: 17px; color: var(--lime); background: #ffffff04; }
@@ -342,6 +342,8 @@
   .workHeading h2 { font-size: 34px; }
   .workGuide { margin-top: 14px; font-size: 11px; }
   .workGuide > span { font-size: 10px; }
+  .projectCarousel { display: block; }
+  .carouselHeading { flex-direction: row; align-items: center; gap: 12px; margin-bottom: 10px; }
   .carouselHeading h3 { display: block; font-size: 15px; }
   .carouselHeading h3 > span { display: block; margin-top: 4px; font-size: 8px; }
   .carouselControls button { min-height: 44px; min-width: 44px; }
@@ -409,4 +411,19 @@
   .clientNavigation svg { width: 18px; }
   .clientChoiceAction { font-size: 0; gap: 0; }
   .testimonialPicker strong { font-size: 13px; }
+}
+
+@media (max-height: 800px) and (min-width: 701px) {
+  .workHeading { margin-bottom: 16px; }
+  .workHeading h2 { font-size: 36px; }
+  .carouselCard { width: 190px; }
+  .projectRows { gap: 18px; }
+}
+@media (max-height: 740px) and (min-width: 701px) {
+  .carouselCard { width: 160px; }
+  .carouselCaption { padding: 8px 10px; }
+  .carouselCaption h4 { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carouselControls .carouselPause { display: none; }
 }
