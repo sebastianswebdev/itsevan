@@ -1,5 +1,17 @@
 import type { StaticImageData } from "next/image";
 
+import zed_buildersShot from "../../public/images/projects/zed-builders.webp";
+import zenhael_buildersShot from "../../public/images/projects/zenhael-builders.webp";
+import tktq_travelsShot from "../../public/images/projects/tktq-travels.webp";
+import jolly_groupShot from "../../public/images/projects/jolly-group.webp";
+import dn_groupShot from "../../public/images/projects/dn-group.webp";
+import mashaa_beautyShot from "../../public/images/projects/mashaa-beauty.webp";
+import northgateShot from "../../public/images/projects/northgate.webp";
+import elzhan_luxeShot from "../../public/images/projects/elzhan-luxe.webp";
+import southside_carwashShot from "../../public/images/projects/southside-carwash.webp";
+import inner_peaceShot from "../../public/images/projects/inner-peace.webp";
+import growing_deep_and_strongShot from "../../public/images/projects/growing-deep-and-strong.webp";
+
 import acuitiShot from "../../public/images/projects/acuiti.jpg";
 import animalMedCentreShot from "../../public/images/projects/animal-med-centre.jpg";
 import ballaratRepcoShot from "../../public/images/projects/ballarat-repco.jpg";
@@ -48,18 +60,18 @@ const AGENCY_ROLE = "Agency · Web Development";
 const COMPANY_ROLE = "Company · Web Development";
 
 const philippineProjects = [
-  { id: "zed-builders", name: "Zed Builders Inc.", monogram: "ZB", href: "https://zedbuildersinc.com/" },
-  { id: "zenhael-builders", name: "Zenhael Builders", monogram: "ZB", href: "https://www.zenhaelbuilders.com/" },
-  { id: "tktq-travels", name: "TKTQ Travels", monogram: "TQ", href: "https://tktqtravels.com/" },
-  { id: "jolly-group", name: "Jolly Group", monogram: "JG", href: "https://www.jolly.ph/" },
-  { id: "dn-group", name: "DN Group", monogram: "DN", href: "https://dngroup.com.ph/" },
-  { id: "mashaa-beauty", name: "Mashaa Beauty", monogram: "MB", href: "https://mashaabeauty.com/" },
-  { id: "northgate", name: "Northgate Technologies", monogram: "NT", href: "https://www.northgate.com.ph/" },
-  { id: "elzhan-luxe", name: "Elzhan Luxe Residences", monogram: "EL", href: "https://elzhanluxeresidences.com/" },
+  { id: "zed-builders", name: "Zed Builders Inc.", monogram: "ZB", href: "https://zedbuildersinc.com/", image: zed_buildersShot },
+  { id: "zenhael-builders", name: "Zenhael Builders", monogram: "ZB", href: "https://www.zenhaelbuilders.com/", image: zenhael_buildersShot },
+  { id: "tktq-travels", name: "TKTQ Travels", monogram: "TQ", href: "https://tktqtravels.com/", image: tktq_travelsShot },
+  { id: "jolly-group", name: "Jolly Group", monogram: "JG", href: "https://www.jolly.ph/", image: jolly_groupShot },
+  { id: "dn-group", name: "DN Group", monogram: "DN", href: "https://dngroup.com.ph/", image: dn_groupShot },
+  { id: "mashaa-beauty", name: "Mashaa Beauty", monogram: "MB", href: "https://mashaabeauty.com/", image: mashaa_beautyShot },
+  { id: "northgate", name: "Northgate Technologies", monogram: "NT", href: "https://www.northgate.com.ph/", image: northgateShot },
+  { id: "elzhan-luxe", name: "Elzhan Luxe Residences", monogram: "EL", href: "https://elzhanluxeresidences.com/", image: elzhan_luxeShot },
   { id: "ag-international", name: "AG International", monogram: "AG", href: "https://aginternationalcoph.com/" },
-  { id: "southside-carwash", name: "Southside Carwash", monogram: "SC", href: "https://southsidecarwash.com.ph/" },
+  { id: "southside-carwash", name: "Southside Carwash", monogram: "SC", href: "https://southsidecarwash.com.ph/", image: southside_carwashShot },
   { id: "gtg-talent", name: "GTG Talent Consultancy", monogram: "GT", href: "https://gtgtalentconsultancy.com/" },
-] as const;
+] satisfies Pick<Project, "id" | "name" | "monogram" | "href" | "image">[];
 
 export const projectGroups: ProjectGroup[] = [
   {
@@ -99,8 +111,7 @@ export const projectGroups: ProjectGroup[] = [
         capabilities: ["WordPress", "Website development", "Digital experience"],
         accent: "violet",
         href: "https://innerpeace.vision/",
-        // TODO: add public/images/projects/inner-peace.jpg — the site was not
-        // reachable from the build machine when the other covers were captured.
+        image: inner_peaceShot,
         imageAlt: "Homepage of the Inner Peace In-Home Nursing & Care website",
       },
       {
@@ -113,8 +124,7 @@ export const projectGroups: ProjectGroup[] = [
         capabilities: ["WordPress", "WooCommerce", "Website development"],
         accent: "emerald",
         href: "https://growingdeepandstrong.com/",
-        // TODO: add public/images/projects/growing-deep-and-strong.jpg — the
-        // site was not reachable from the build machine.
+        image: growing_deep_and_strongShot,
         imageAlt: "Homepage of the Growing Deep and Strong website",
       },
       {

@@ -51,12 +51,17 @@ public/images/    # brand + portrait assets
 - **Contact links, social URLs, and metadata** → `src/data/site.ts`.
 - **Intro, three skills, and slide navigation** → `src/components/HorizontalPortfolio.tsx`.
 - **Layout and responsive styles** → `src/components/HorizontalPortfolio.module.css`.
-- **Projects** → `src/data/projects.ts`. All projects remain available in the
-  project selector: 12 Australian projects and 11 Philippine projects. Country
-  controls filter the selector and project arrows. Freelance work covers design,
-  development, hosting management, SEO, ads, and marketing. Agency/company work
-  is credited as development from supplied Figma or Adobe XD designs. The
-  Philippine projects were built from scratch while working at ITWorks Global.
+- **Projects** → `src/data/projects.ts`. Work shows two continuously looping
+  image carousels: 12 Australian websites above 11 Philippine websites. Each
+  card links to the website and displays the development role. Rows support
+  native touch/trackpad scrolling, arrow controls and an explicit Play/Pause
+  button. Hover and keyboard focus pause motion; manual browsing also pauses
+  the row. Animation runs only on the Work slide and stops for hidden tabs or
+  reduced-motion preferences. Duplicated loop copies stay out of keyboard and
+  screen-reader navigation. The Philippines row credits ITWorks Global and
+  development from supplied Figma / Adobe XD designs. There are 21 real
+  website previews; AG International and GTG Talent retain labelled fallback
+  covers because their websites did not serve a usable preview at capture time.
 
 - **Education and awards** → `src/data/education.ts`. The Education slide
   includes Evan’s STI College BS Computer Science degree (July 2020–July 2024),
